@@ -17,8 +17,8 @@ CREATE TABLE template
 (
     template_id SERIAL PRIMARY KEY,
     image VARCHAR,
-    img_name VARCHAR
-    -- users_id INT REFERENCES users(id)
+    img_name VARCHAR,
+    users_id INT REFERENCES users(id)
     );
 
 CREATE TABLE projects
