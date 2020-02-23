@@ -86,7 +86,7 @@ Route  |  Feature
 /contact | Contact page
 
 ## Wireframes
-[Wireframes here]()
+[Wireframes here](https://github.com/ojones311/Tekpack/blob/master/assets/wireframes)
 
 ## Who Made This?
 
