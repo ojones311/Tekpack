@@ -61,7 +61,7 @@ POST   | /comments/:project_id   | Add a comment| n/a
 
 Route| Feature
 -----  -------
-/    | Home route. Welcomes the user
+/    | Home route | Welcomes the user
 
 ## Wireframes
 [Wireframes here]()
