@@ -5,18 +5,18 @@ getTemplateById = async (template_id) => {
     try {
         const temp = await db.one(`SELECT * from template WHERE template_id =$/template_id/`, [template_id])
         return temp
-    }catch(error){
+    } catch (error) {
         res.status(500).json({
-            payload:null,
-            msg:error,
+            payload: null,
+            msg: error,
             err: true
-          })
+        })
     }
 }
 
 
 addNewTemplate = async () => {
-    try{
+    try {
         let image = `${req.params.image}`
         let image_name = `${req.params.img_name}`
         let insertQuery = `INSERT INTO template(image, img_name) 
@@ -26,12 +26,12 @@ addNewTemplate = async () => {
             status: "success",
             message: "template posted"
         });
-    }catch(error){
+    } catch (error) {
         res.status(500).json({
-            payload:null,
-            msg:error,
+            payload: null,
+            msg: error,
             err: true
-          })
+        })
     }
 }
 
@@ -40,6 +40,6 @@ addNewTemplate = async () => {
 // }
 
 module.exports = {
-getTemplateById,
-addNewTemplate
+    getTemplateById,
+    addNewTemplate
 }
