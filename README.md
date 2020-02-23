@@ -1,5 +1,22 @@
 # Tekpack
 
+Right now there are many flaws of sustainability in the Fashion industry. Accodring to the article from **[United Nation Enviroment Programme](https://www.unenvironment.org/news-and-stories/story/putting-brakes-fast-fashion)**: 
+
+> *"Textile dyeing is the second largest polluter of water globally and it takes around 2,000 gallons of water to make a typical pair of jeans. Every second, the equivalent of one garbage truck of textiles is landfilled or burned. If nothing changes, by 2050 the fashion industry will use up a quarter of the world’s carbon budget."*
+
+A quarter of the world's carbon budget by 2050?! That is some scarry stuff. It's impossible to completely solve the issue but we can take small initiatives and make progress towards a more sustainable future in the Fashion Industry.
+
+So, our product is called TekPack and the problem we are solving is textile waste by targetting the back and forth process between designers and the manufactures when making samples. Each iteration of the sample costs the business money as well as adding to the textile waste problem. During this process one of the reasons for going back and forth is due to problems in the product specifications that gets sent back and forth between Designers and Manufacturers. Some of these problems are:
+
+1. Design & Specification inaccuracy (typos, mislabels, human errors)
+2. Miscommunications between the two parties (language issues, back and forth commenting, having to dig through emails)
+3. Hard to manage files for each product (excel sheets, product images, and product spec sheets)
+
+TekPack is your one stop shop to manage and keep track of product specifications and its related content seamlessly, between both parties. A simple User Interface and headache free User Experience with all the key options & features needed built into one platform. Some of the features are creating templates for forms, drag and drop image uploading, live changes in the form, auto generating pdf files & spreadsheets.
+
+> ...
+
+
 A lot of the waste in the fashion industry comes from desingers trying to communicate fashion designs to their suppliers or factories. Factories produce samples based on a reference garment with product specs and a sketch. A "tech pack" helps them troubleshoot before any fabric is cut but many problems can arise from this stunted communication flow.
 
 Tekpack will allow dynamic updating between designer and the supplier point of contact creating a collaborative tech pack. They can make real time updates and reduce human error to create a better communication flow between designer and factory. 
@@ -70,7 +87,13 @@ Route  |  Feature
 
 ## Wireframes
 [Wireframes here]()
+
 ## Who Made This?
 
-Tekpack would not be possible without the work of our group. The developers on this web app are [Kadijah Wilson](https://github.com/KadijahW), [Jenesh Napit](https://github.com/jenesh), [Jonathan Fagan](https://github.com/Jaiden16), and [Owen Jones:](https://github.com/ojones311)
+TekPack is developed with ❤️ by [Kadijah Wilson](https://github.com/KadijahW), [Jenesh Napit](https://github.com/jenesh), [Jonathan Fagan](https://github.com/Jaiden16), and [Owen Jones](https://github.com/ojones311).
 
+## App name ideas:
+- Spec / Spek
+- Send
+- Sprout
+- 
