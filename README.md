@@ -38,6 +38,7 @@ PATCH  | /user/projects/:id | Edits a project   |
 DELETE | /user/projects/:id | Deletes a project |        
 
 
+
 * **Sketches**
 
 Method | Endpoint | Description | Body Data
@@ -46,12 +47,14 @@ GET    | /sketch/:project_id | Gets a sketch by project id| n/a
 POST   | /sketch/:project_id | Adds a sketch by project id| n/a
 PATCH  | /sketch/:project_id |  Edits a sketch | n/a
 
+
 * **Comments**
 
 Method | Endpoint | Description | Body Data
 ------ | -------- |  ---------- | ---------
 GET    | /comments/project_id   | Gets all comments by project id| n/a
 POST   | /comments/:project_id   | Add a comment| n/a
+
 
 ## Who Made This?
 
