@@ -23,9 +23,9 @@ addNewTemplate = async (image, img_name) => {
 }
 
 
-// getAll = async () => {
-//     return await db.any(`SELECT * FROM template`)
-// }
+getAll = async () => {
+    return await db.any(`SELECT * FROM template`)
+}
 
 
 
@@ -36,5 +36,5 @@ addNewTemplate = async (image, img_name) => {
 module.exports = {
 getTemplateById,
 addNewTemplate,
-// getAll
+getAll
 }

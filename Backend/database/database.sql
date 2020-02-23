@@ -21,6 +21,13 @@ CREATE TABLE template
     users_id INT REFERENCES users(id)
     );
 
+CREATE TABLE comments
+(
+    comment_id SERIAL PRIMARY KEY,
+    comment VARCHAR,
+    commentors_name VARCHAR REFERENCES users (name)
+);
+
 CREATE TABLE projects
 (
     projects_id SERIAL PRIMARY KEY,
@@ -31,7 +38,8 @@ CREATE TABLE projects
     color VARCHAR,
     img_url VARCHAR,
     template_id INT REFERENCES template(template_id),
-    users_id INT REFERENCES users(users_id)
+    users_id INT REFERENCES users(users_id),
+    comment_id INT REFERENCES comments(comments_id)
     );
 
 
@@ -63,12 +71,7 @@ CREATE TABLE measurement
     projects_id INT REFERENCES projects(projects_id)
 );
 
-CREATE TABLE comments
-(
-    comment_id SERIAL PRIMARY KEY,
-    comment VARCHAR,
-    commentors_name VARCHAR REFERENCES users (name)
-);
+
 
 INSERT INTO users
     (name, email, number, password)
