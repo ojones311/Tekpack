@@ -1,4 +1,4 @@
-const db = require('../db/index.js')
+const db = require('../database/index.js')
 
 
 getTemplateById = async (template_id) => {
