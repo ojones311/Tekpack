@@ -1,5 +1,6 @@
 const db = require('../database/index')
 
+// getAllProjects 
 getAllProjectsByUserId = async(userId) => {
     try{
         const myProjectsByUserId = await db.any('SELECT * FROM projects WHERE users_id= $/userId/', {userId})
