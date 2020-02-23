@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
+import { Link } from 'react-router-dom'
 
 
-class SignIn extends Component {
+class Login extends Component {
     constructor() {
         super()
         this.state = {
@@ -20,16 +21,12 @@ class SignIn extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-
     }
 
-
-
-
     render() {
-        let { email, password } = this.state
+        let {email, password} = this.state
         return (
-            <div className="SignIn-Page">
+            <div className="Login-Page">
                 <img src={pic} alt="brokenLink" />
 
                 <form>
@@ -41,7 +38,7 @@ class SignIn extends Component {
                         placeholder="Email"
                         name="email"
                         value={email}
-                        onChange = {this.handleChange}
+                        onChange={this.handleChange}
                         required />
 
 
@@ -50,15 +47,16 @@ class SignIn extends Component {
                         placeholder="password"
                         name="password"
                         value={password}
-                        onChange = {this.handleChange}
+                        onChange={this.handleChange}
                         required />
 
                 </form>
+                <Link to='/signup'><button>Sign Up</button></Link>
+
             </div>
         )
     }
+
 }
 
-export default SignIn
-
-
+export default Login

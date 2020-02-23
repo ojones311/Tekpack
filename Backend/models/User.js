@@ -1,15 +1,25 @@
-const db = require('../db/index')
+const db = require('../database/index')
 
-getAllProjectsByUserId = async () => {
+getUserById = async (id) => {
     try{
-        const myProjectsByUserId = await db.any()
+        const myUser = await db.one('SELECT * FROM users WHERE id= $/id/', [id])
+        return myUser
     }catch(error){
         console.log('mod error', error)
     }
 }
 
-getSingleProjectByUserId = async () => {
+getUserByName = async (name) => {
     try{
-        const mySingleProject = await db.one()
+        const myUser = await db.one('SELECT * FROM users WHERE name= $/name/', [name])
+        return myUser
+    } catch(error){
+        console.log('mod error', error)
     }
+}
+
+
+module.exports = {
+    getUserById,
+    getUserByName
 }
