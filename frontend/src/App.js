@@ -6,6 +6,7 @@ import SignUp from './components/SignUp'
 import NavBar from './containers/NavBar'
 import Home from './containers/Home'
 import Projects from './containers/Projects'
+import 'materialize-css'
 
 class App extends Component {
   state = {
