@@ -55,7 +55,16 @@ Method | Endpoint | Description | Body Data
 GET    | /comments/project_id   | Gets all comments by project id| n/a
 POST   | /comments/:project_id   | Add a comment| n/a
 
+## Frontend
 
+#### Routes
+
+Route| Feature
+-----  -------
+/    | Home route. Welcomes the user
+
+## Wireframes
+[Wireframes here]()
 ## Who Made This?
 
 Tekpack would not be possible without the work of our group. The developers on this web app are [Kadijah Wilson](https://github.com/KadijahW), [Jenesh Napit](https://github.com/jenesh), [Johnathan Fagan](https://github.com/Jaiden16), and [Owen Jones:](https://github.com/ojones311)
