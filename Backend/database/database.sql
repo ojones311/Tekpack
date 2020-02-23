@@ -73,8 +73,8 @@ CREATE TABLE comments
 INSERT INTO users
     (name, email, number, password)
 VALUES
-    ('Owen Jones', 'OJones@project.com', 123-456-7890, 'pursuit123'),
-    ('Jonathan Fagan', 'JFagan@project.com', 987-654-3210, 'pursuit123');
+    ('Owen Jones', 'OJones@project.com', 1234567890, 'pursuit123'),
+    ('Jonathan Fagan', 'JFagan@project.com', 9876543210, 'pursuit123');
 
 INSERT INTO template
     (image, img_name)
