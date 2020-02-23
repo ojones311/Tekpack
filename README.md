@@ -59,13 +59,18 @@ POST   | /comments/:project_id   | Add a comment| n/a
 
 #### Routes
 
-Route| Feature
------  -------
-/    | Home route | Welcomes the user
+Route  |  Feature
+-----  |   -------
+/      | Index route. Prompts user to log in |
+/home  | Landing after user is logged in. Takes us to user home page
+/newproject | Create new project page. Shows a page where you chose how you want to make a new project via template or without one 
+/project/:project_key | Shows the project page you created. Page has a form to input spec data and the upload the sketch photo
+/export/:project_key  | Export page. Can export just the form into excel or the form and sketch into pdf 
+/contact | Contact page
 
 ## Wireframes
 [Wireframes here]()
 ## Who Made This?
 
-Tekpack would not be possible without the work of our group. The developers on this web app are [Kadijah Wilson](https://github.com/KadijahW), [Jenesh Napit](https://github.com/jenesh), [Johnathan Fagan](https://github.com/Jaiden16), and [Owen Jones:](https://github.com/ojones311)
+Tekpack would not be possible without the work of our group. The developers on this web app are [Kadijah Wilson](https://github.com/KadijahW), [Jenesh Napit](https://github.com/jenesh), [Jonathan Fagan](https://github.com/Jaiden16), and [Owen Jones:](https://github.com/ojones311)
 
