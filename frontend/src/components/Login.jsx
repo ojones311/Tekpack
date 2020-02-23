@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
 import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core'
 
 
 class Login extends Component {
@@ -13,7 +14,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        console.log("Sign in component mounted")
+        console.log("Log in component mounted")
     }
 
     handleChange = (e) => {
@@ -24,14 +25,13 @@ class Login extends Component {
     }
 
     render() {
-        let {email, password} = this.state
+        let { email, password } = this.state
         return (
             <div className="Login-Page">
                 <img src={pic} alt="brokenLink" />
+                <h1>Log In Component</h1>
 
                 <form>
-                    <button>Sign In</button>
-                    <button>Sign Up</button>
 
                     <input
                         type="text"
@@ -48,10 +48,11 @@ class Login extends Component {
                         name="password"
                         value={password}
                         onChange={this.handleChange}
-                        required />
+                        required /><br/>
 
+                    <Button variant="outlined" color="primary">Sign In</Button><br/>
+                    <Button variant="outlined" color="primary">Sign up</Button>
                 </form>
-                <Link to='/signup'><button>Sign Up</button></Link>
 
             </div>
         )
