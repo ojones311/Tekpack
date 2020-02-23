@@ -1,6 +1,6 @@
 # Tekpack
 
-Right now there are many flaws of sustainability in the Fashion industry. Accodring to the article from **[United Nation Enviroment Programme](https://www.unenvironment.org/news-and-stories/story/putting-brakes-fast-fashion)**: 
+Right now there are many flaws of sustainability in the Fashion industry. According to the article from **[United Nation Enviroment Programme](https://www.unenvironment.org/news-and-stories/story/putting-brakes-fast-fashion)**: 
 
 > *"Textile dyeing is the second largest polluter of water globally and it takes around 2,000 gallons of water to make a typical pair of jeans. Every second, the equivalent of one garbage truck of textiles is landfilled or burned. If nothing changes, by 2050 the fashion industry will use up a quarter of the world’s carbon budget."*
 
