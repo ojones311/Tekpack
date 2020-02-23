@@ -13,13 +13,13 @@ CREATE TABLE users (
 );
 
 CREATE TABLE template(
-    id SERIAL PRIMARY KEY,
+    template_id SERIAL PRIMARY KEY,
     image VARCHAR,
     users_id INT REFERENCES users(id)
 );
 
 CREATE TABLE product (
-    id SERIAL PRIMARY KEY,
+    product_id SERIAL PRIMARY KEY,
     description VARCHAR,
     date_made DATE,
     created_by VARCHAR,
@@ -29,8 +29,8 @@ CREATE TABLE product (
     users_id INT REFERENCES users(id)
 );
 
-CREATE TABLE measurements(
-id SERIAL PRIMARY KEY,
+CREATE TABLE measurement(
+measurement_id SERIAL PRIMARY KEY,
 HPS INT,
 CF INT,
 CB INT,
@@ -53,4 +53,11 @@ leg_opening INT,
 front_rise INT,
 back_rise INT,
 inseamn INT,
+product_id INT REFERENCES product(product_id)
+);
+
+CREATE TABLE comments (
+    comment_id SERIAL PRIMARY KEY,
+    comment VARCHAR,
+    commentors_name VARCHAR REFERENCES users (name)
 );
