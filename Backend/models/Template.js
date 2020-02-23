@@ -17,7 +17,11 @@ getTemplateById = async (template_id) => {
 
 addNewTemplate = async () => {
     try{
-        await db.mone(`INSERT INTO template(image, img_name) VALUES($1, $2)`)
+        let image = `${req.params.image}`
+        let image_name = `${req.params.img_name}`
+        let insertQuery = `INSERT INTO template(image, img_name) 
+        VALUES($1, $2)`
+        let response = await db.none(insertQuery, [image, image_name])
         res.json({
             status: "success",
             message: "template posted"
@@ -29,4 +33,13 @@ addNewTemplate = async () => {
             err: true
           })
     }
+}
+
+// changeTemplate = async () => {
+
+// }
+
+module.exports = {
+getTemplateById,
+addNewTemplate
 }
