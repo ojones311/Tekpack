@@ -17,8 +17,8 @@ CREATE TABLE template
 (
     template_id SERIAL PRIMARY KEY,
     image VARCHAR,
-    img_name VARCHAR
-    -- users_id INT REFERENCES users(id)
+    img_name VARCHAR,
+    users_id INT REFERENCES users(id)
     );
 
 CREATE TABLE projects
@@ -38,10 +38,10 @@ CREATE TABLE projects
 CREATE TABLE measurement
 (
     measurement_id SERIAL PRIMARY KEY,
-    HPS INT,
-    CF INT,
-    CB INT,
-    SS INT,
+    HPS VARCHAR,
+    CF VARCHAR,
+    CB VARCHAR,
+    SS VARCHAR,
     -- body_length INT,
     -- across_chest INT,
     -- waist INT,
