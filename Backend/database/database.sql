@@ -4,6 +4,7 @@ CREATE DATABASE tekpack;
 
 \c tekpack
 
+
 CREATE TABLE users
 (
     users_id SERIAL PRIMARY KEY,
