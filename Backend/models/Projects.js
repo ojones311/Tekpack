@@ -1,4 +1,4 @@
-const db = require('../db/index')
+const db = require('../database/index')
 
 getAllProjectsByUserId = async(userId) => {
     try{
