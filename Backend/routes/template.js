@@ -22,7 +22,7 @@ router.get('/all', async (req, res, next) => {
 })
 
 router.get('/:template_id', async (req, res, next) => {
-    const {template_id} = req.params
+    const { template_id } = req.params
     try {
         const template = await temp.getTemplateById(template_id)
         res.json({
@@ -44,7 +44,7 @@ router.get('/:template_id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     console.log(req.body)
-   const { image, img_name } = req.body
+    const { image, img_name } = req.body
 
     try {
         const addTemp = await temp.addNewTemplate(image, img_name)
