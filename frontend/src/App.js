@@ -1,13 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { Route } from 'react-router-dom'
+import SignIn from './components/SignIn';
 
-function App() {
-  return (
-    <div className="App">
-      This is the main app.
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+  }
+
+  render() {
+    return (
+      <div className="App">
+        This is the main app.
+        <SignIn/>
+      </div>
+    );
+  }
+
+
 }
 
 export default App;
