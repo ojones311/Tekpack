@@ -2,7 +2,7 @@ const db = require('../database/index')
 
 getUserById = async (id) => {
     try{
-        const myUser = await db.one('SELECT * FROM users WHERE id= $/id/', [id])
+        const myUser = await db.one('SELECT * FROM users WHERE users_id= $1', [id])
         return myUser
     }catch(error){
         console.log('mod error', error)
