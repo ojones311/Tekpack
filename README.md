@@ -18,13 +18,40 @@ The whole process will cut down on waste in the supply chain and prevent costly 
 
 Method | Endpoint | Description | Body Data
 ------ | -------- |  ---------- | ---------
-GET    | /login   | Logins in user| n/a
-POST   | /signup   | Signs up user| n/a
+GET    | auth/login   | Logins in user| n/a
+POST   | auth/signup   | Signs up user| n/a
 
 
-* User
-* Sketches
-* Comments
+*  **User**
+
+Method | Endpoint | Description | Body Data
+------ | -------- |  ---------- | ---------
+GET    | /user/projects | Gets all projects| n/a
+GET    | /user/projects/:id| Get single project by id| n/a
+GET    | /user/projects/project_name | Get project by project name   | n/a
+GET    | /user/projects/templates | Gets project template| n/a
+GET    | /user/projects/default | Gets default project| n/a
+POST   | /user/projects/new | Add new project |
+POST   | /user/projects/templates | Add new project from template |
+POST   | /user/projects/:project_id | Add new project by product id |
+PATCH  | /user/projects/:id | Edits a project   |        
+DELETE | /user/projects/:id | Deletes a project |        
+
+
+* **Sketches**
+
+Method | Endpoint | Description | Body Data
+------ | -------- |  ---------- | ---------
+GET    | /sketch/:project_id | Gets a sketch by project id| n/a
+POST   | /sketch/:project_id | Adds a sketch by project id| n/a
+PATCH  | /sketch/:project_id |  Edits a sketch | n/a
+
+* **Comments**
+
+Method | Endpoint | Description | Body Data
+------ | -------- |  ---------- | ---------
+GET    | /comments/project_id   | Gets all comments by project id| n/a
+POST   | /comments/:project_id   | Add a comment| n/a
 
 ## Who Made This?
 
