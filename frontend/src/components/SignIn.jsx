@@ -1,43 +1,64 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import pic from '../assets/download.png'
 
 
-class SignIn extends Component{
-    constructor(){
+class SignIn extends Component {
+    constructor() {
         super()
         this.state = {
-            username: "",
+            email: "",
             password: ""
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("Sign in component mounted")
     }
 
-    render(){
-        return(
-            <div className = "SignIn-Page">
-                <img src = {pic}  alt = "brokenLink"/>
+    handleChange = (e) => {
+        console.log(`${e.target.name}: value: ${e.target.value}`)
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+
+
+
+    render() {
+        let { email, password } = this.state
+        return (
+            <div className="SignIn-Page">
+                <img src={pic} alt="brokenLink" />
 
                 <form>
                     <button>Sign In</button>
                     <button>Sign Up</button>
-                    <input 
-                    type = "text"
-                    placeholder = "Email" 
-                    required/>
-                    <input 
-                    type = "text"
-                    placeholder = "password" 
-                    required/>
 
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        value={email}
+                        onChange = {this.handleChange}
+                        required />
+
+
+                    <input
+                        type="text"
+                        placeholder="password"
+                        name="password"
+                        value={password}
+                        onChange = {this.handleChange}
+                        required />
 
                 </form>
-
             </div>
         )
     }
 }
 
 export default SignIn
+
+
