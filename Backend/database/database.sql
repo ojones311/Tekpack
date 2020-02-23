@@ -10,7 +10,7 @@ CREATE TABLE users
     users_id SERIAL PRIMARY KEY,
     name VARCHAR UNIQUE,
     email VARCHAR,
-    number INT,
+    number VARCHAR,
     password VARCHAR);
 
 CREATE TABLE template
