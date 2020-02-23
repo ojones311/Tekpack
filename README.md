@@ -11,8 +11,8 @@ The tech designer can input and update spec’s according to the products. The s
 The whole process will cut down on waste in the supply chain and prevent costly mistakes in production.
 
 ## Database Structure
-![Database Structure]
-(hackathon1.png)
+![image of database](https://github.com/ojones311/Tekpack/blob/master/hackathon1.png)
+
 ## API Endpoints
 *  **User Auth**
 
