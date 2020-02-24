@@ -69,3 +69,42 @@
   cursor: pointer;
   font-weight: 600;
 }
+
+.hamburger {
+  position: relative;
+  top: 60px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  background: gray;
+  width: 200px;
+}
+
+.hamburger > li {
+  padding: 0;
+  margin: 0;
+}
+
+.hamburger > li > a {
+  color: black;
+}
+
+.hamburger > li > a:hover {
+  color: red;
+}
+
+.formField {
+  width: 40%;
+  margin: 0;
+  padding: 0;
+} 
+.formInput {
+  width: 200px;
+}
+.design-img {
+  position: relative;
+  width: 40%;
+}
+img {
+  width: 100%;
+}

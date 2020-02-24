@@ -20,15 +20,17 @@ class App extends Component {
       <Router className="App">
         <NavBar />
         {/* <Login /> */}
-        <Switch>
-          <Route path='/login' component={Login} />
-          <Route path='/signup' component={SignUp} />
-          <Route path='/projects' exact component={Projects} />
-          <Route path='/home' component={Home} />
-          <Route path='/about' component={About} />
-          <Route path='/projects/:id' component={Projects} />
-          <Redirect from='/' to='/home' />
-        </Switch>
+        <div className='container'>
+          <Switch>
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/projects' exact component={Projects} />
+            <Route path='/home' component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/projects/:id' component={Projects} />
+            <Redirect from='/' to='/home' />
+          </Switch>
+        </div>
       </Router>
     );
   }
