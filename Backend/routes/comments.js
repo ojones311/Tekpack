@@ -22,9 +22,16 @@ router.get('/:comment_id', async (req, res, next) => {
     }
 })
 
-router.post('/:project_id', async (req, res, next) => {
-    try{
 
+router.post('/:projects_id', async (req, res, next) => {
+    const {comment, commentors_name} = req.body
+    try{
+        const addComment = await comment.addNewComment(comment, commentors_name)
+        res.json({
+            payload: addComment,
+            msg: "comment added",
+            error: false
+        })
     }catch (error) {
         console.log(error)
         res.status(500).json({
@@ -36,3 +43,4 @@ router.post('/:project_id', async (req, res, next) => {
 })
 
 module.exports = router;
+
