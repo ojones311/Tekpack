@@ -3,6 +3,7 @@ var router = express.Router();
 const comment = require('../models/Comments')
 
 
+
 router.get('/:comment_id', async (req, res, next) => {
     const {comment_id} = req.params
     try {
@@ -22,9 +23,29 @@ router.get('/:comment_id', async (req, res, next) => {
     }
 })
 
+router.get('/project/:projects_id', async (req, res, next) => {
+    const {projects_id} = req.params
+    try{
+        const commentByProjid = await comment.getCommentsByProjectID(projects_id)
+        res.json({
+            payload: commentByProjid,
+            msg: "Success",
+            error: false
+        })
+    }catch (error) {
+        console.log(error)
+        res.status(500).json({
+            payload: null,
+            msg: error,
+            err: true
+        })
+    }
+})
 
 router.post('/:projects_id', async (req, res, next) => {
     const {comment, commentors_name} = req.body
+    console.log(req.body)
+
     try{
         const addComment = await comment.addNewComment(comment, commentors_name)
         res.json({
