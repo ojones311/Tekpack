@@ -7,7 +7,7 @@ const Projects = (props) => {
     console.log(props)
     return (
         <div>
-            <h1>Projects Components</h1>
+            {/* <h1>Projects Components</h1> */}
             {
                 props.match.params.id ?
                     <Specifications {...props} />
