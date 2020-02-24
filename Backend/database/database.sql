@@ -21,12 +21,6 @@ CREATE TABLE template
     users_id INT REFERENCES users(id)
     );
 
-CREATE TABLE comments
-(
-    comment_id SERIAL PRIMARY KEY,
-    comment VARCHAR,
-    commentors_name VARCHAR REFERENCES users (name)
-);
 
 CREATE TABLE projects
 (
@@ -42,6 +36,15 @@ CREATE TABLE projects
     comment_id INT REFERENCES comments(comments_id),
     form_data VARCHAR
     );
+
+    CREATE TABLE comments
+(
+    comment_id SERIAL PRIMARY KEY,
+    comment VARCHAR,
+    commentors_name VARCHAR REFERENCES users (name),
+    projects_id INT REFERENCES projects(projects_id)
+);
+
 
 
 CREATE TABLE measurement
