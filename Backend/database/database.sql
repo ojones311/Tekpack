@@ -33,7 +33,6 @@ CREATE TABLE projects
     img_url VARCHAR,
     template_id INT REFERENCES template(template_id),
     users_id INT REFERENCES users(users_id),
-    comment_id INT REFERENCES comments(comments_id),
     form_data VARCHAR
     );
 
