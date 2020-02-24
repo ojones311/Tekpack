@@ -1,6 +1,13 @@
 const db = require('../database/index')
 
-// getAllProjects 
+getAllProjects = async () => {
+    try{
+        const allProjects = await db.any('SELECT * FROM projects')
+        return allProjects
+    }catch(error){
+        console.log('mod error', error)
+    }
+}
 getAllProjectsByUserId = async(userId) => {
     try{
         const myProjectsByUserId = await db.any('SELECT * FROM projects WHERE users_id= $/userId/', {userId})
@@ -10,7 +17,7 @@ getAllProjectsByUserId = async(userId) => {
     }
 }
 
-getProjectByProjectId = async(projectId) => {
+getProjectByProjectId = async (projectId) => {
     try{
         const myProject = await db.one('SELECT * FROM projects WHERE product_id= $/projectId/', {projectId})
         return myProject
@@ -43,6 +50,7 @@ deleteProject = async () => {
 }
 
 module.exports = {
+    getAllProjects,
     getAllProjectsByUserId,
     getProjectByProjectId
 }

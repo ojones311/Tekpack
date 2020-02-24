@@ -12,6 +12,7 @@ getTemplateById = async (template_id) => {
 
 
 addNewTemplate = async (image, img_name) => {
+
     try{
         const insertQuery = `INSERT INTO template (image, img_name) 
         VALUES($1, $2) RETURNING *`
@@ -22,12 +23,20 @@ addNewTemplate = async (image, img_name) => {
     }
 }
 
+// addNewTemplate = async (image, img_name) => {
+//     try {
+//         const insertQuery = `INSERT INTO template (image, img_name) 
+//         VALUES($1, $2) RETURNING *`
+//         let response = await db.any(insertQuery, [image, img_name])
+//         return response;
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 getAll = async () => {
     return await db.any(`SELECT * FROM template`)
 }
-
-
 
 // changeTemplate = async () => {
 
