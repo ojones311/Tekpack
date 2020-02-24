@@ -1,17 +1,8 @@
-.App {
+/* .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+  height: 100%;
+  top: 0;  
+} */
 
 .App-header {
   background-color: #282c34;
@@ -23,24 +14,6 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* .collection-item {
-  
-} */
 
 /* .collection-item:hover {
   color: rgb(240, 83, 83);
@@ -58,11 +31,11 @@
   transition: all .1s ease-in;
 }
 
-.material-icons:hover {
+/* .material-icons:hover {
   transform: scale(1.1);
   border-bottom: .5px solid rgb(171, 171, 171);
   cursor: pointer;
-}
+} */
 
 .project-name:hover {
   color: rgb(240, 83, 83);
@@ -72,27 +45,50 @@
 
 .hamburger {
   position: relative;
-  top: 60px;
+  top: 50px;
+  left: -30px;
   color: black;
   display: flex;
   flex-direction: column;
-  background: gray;
-  width: 200px;
+  background: rgb(255, 117, 117);
+  width: 150px;
+  margin: 0;
+  padding: 0;
+  border-radius: 0% 25% 25% 25%;
+  z-index: 2;
+  /* align-items: space-between; */
 }
 
 .hamburger > li {
   padding: 0;
   margin: 0;
 }
-
 .hamburger > li > a {
   color: black;
 }
-
+.hamburger .collection-item *:hover {
+  background: none;
+}
 .hamburger > li > a:hover {
   color: red;
 }
+.hamburger-item .material-icons {
+  color: white;
+}
+.hamburger-item:hover, .hamburger-item .material-icons:hover {
+  background: none;
+  color: rgb(0, 0, 0);
 
+}
+.hamburger-item:hover {
+  transform: scale(1.1);
+}
+/* .hamburger-item>li {
+  width: 100%;
+} */
+/* .hamburger-item >li:hover {
+  background: rgb(252, 135, 135);
+} */
 .formField {
   width: 40%;
   margin: 0;
@@ -107,4 +103,9 @@
 }
 img {
   width: 100%;
+}
+.project-overview .material-icons:hover {
+  transform: scale(1.1);
+  border-bottom: .5px solid rgb(171, 171, 171);
+  cursor: pointer;
 }
