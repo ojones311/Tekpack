@@ -32,7 +32,79 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* .collection-item {
+  
+} */
+
+/* .collection-item:hover {
+  color: rgb(240, 83, 83);
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 0 1px 1px black; 
+  background: rgb(247, 247, 247);
+}
+*/
+/* .secondary-content {
+  padding: 10px;
+} */
+.material-icons {
+  margin: 0 7px;
+  transition: all .1s ease-in;
+}
+
+.material-icons:hover {
+  transform: scale(1.1);
+  border-bottom: .5px solid rgb(171, 171, 171);
+  cursor: pointer;
+}
+
+.project-name:hover {
+  color: rgb(240, 83, 83);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.hamburger {
+  position: relative;
+  top: 60px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  background: gray;
+  width: 200px;
+}
+
+.hamburger > li {
+  padding: 0;
+  margin: 0;
+}
+
+.hamburger > li > a {
+  color: black;
+}
+
+.hamburger > li > a:hover {
+  color: red;
+}
+
+.formField {
+  width: 40%;
+  margin: 0;
+  padding: 0;
+} 
+.formInput {
+  width: 200px;
+}
+.design-img {
+  position: relative;
+  width: 40%;
+}
+img {
+  width: 100%;
 }
