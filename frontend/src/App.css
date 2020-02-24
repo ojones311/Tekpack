@@ -105,7 +105,13 @@ img {
   width: 100%;
 }
 .project-overview .material-icons:hover {
-  transform: scale(1.1);
-  border-bottom: .5px solid rgb(171, 171, 171);
+  transform: scale(1.15);
+  /* border-bottom: .5px solid rgb(171, 171, 171); */
   cursor: pointer;
+}
+.project-new {
+  transition: all .12s ease-in;
+}
+.project-new:hover {
+  transform: scale(1.04);
 }
