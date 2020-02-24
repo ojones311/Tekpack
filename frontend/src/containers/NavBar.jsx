@@ -9,13 +9,33 @@ const NavBar = (props) => {
 
     const route = props.location.pathname
 
-    const hamburgerMenu = () => (
-        <ul class="hamburger">
-            <li><NavLink to="/home">Home</NavLink></li>
-            <li><NavLink to='/projects'>Projects</NavLink></li>
-            <li><NavLink to='/about'>About</NavLink></li>
-        </ul>
-    )
+    const menuList = [
+        { name: 'Home', path: '/home', icon: 'home' },
+        { name: 'Projects', path: '/projects', icon: 'view_list' },
+        { name: 'About', path: '/about', icon: 'info' }
+    ]
+
+    const hamburgerMenu = () => {
+        const listItems = menuList.map(item => (
+            <NavLink to={item.path} className='hamburger-item'>
+                <li
+                    onClick={() => showMenu()}
+                    className='collection-item'
+                >
+                    <span className='secondary-content left'>
+                        <i class="small material-icons">{item.icon}</i>
+                    </span>
+                    {item.name}
+                </li>
+            </NavLink>
+        ));
+
+        return (
+            <ul className="hamburger">
+                {listItems}
+            </ul>
+        )
+    }
 
     const showMenu = () => setState({
         showHamburger: !state.showHamburger
@@ -28,21 +48,15 @@ const NavBar = (props) => {
             <div className='container'>
                 <NavLink to='/' className='brand-logo'>TekPack</NavLink>
                 <a
-
+                    href={false}
                     data-target="mobile-demo"
                     className="sidenav-trigger">
                     <i
                         className="material-icons"
                         onClick={showMenu}
-                        onMouse={showMenu}
                     >
                         menu
                     </i>
-                    {/* <div className='hamburger'>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                    </div> */}
                 </a>
                 {state.showHamburger ? hamburgerMenu() : null}
                 <ul className='right hide-on-med-and-down'>
