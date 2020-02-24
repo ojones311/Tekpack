@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import NavBar from './containers/NavBar'
 import Home from './containers/Home'
+import About from './containers/About'
 import Projects from './containers/Projects'
 import 'materialize-css'
 
 class App extends Component {
   state = {
     loggedIn: false,
+    currentRoute: '/home'
   }
 
   render() {
     return (
       <Router className="App">
         <NavBar />
-        <h1>This is the main app.</h1>
         {/* <Login /> */}
         <Switch>
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUp} />
-          <Route path='/projects' component={Projects} />
-          <Route path='/' component={Home} />
+          <Route path='/projects' exact component={Projects} />
+          <Route path='/home' component={Home} />
+          <Route path='/about' component={About} />
+          <Route path='/projects/:id' component={Projects} />
+          <Redirect from='/' to='/home' />
         </Switch>
       </Router>
     );

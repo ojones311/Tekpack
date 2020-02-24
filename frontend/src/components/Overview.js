@@ -21,11 +21,21 @@ const Overview = (props) => {
                 {
                     projects.map(proj => (
                         <li className='collection-item'>
-                            {proj.id} - {proj.name}
+                            <span
+                                className='project-name'
+                                onClick={() => getDetailedProject(proj.id)}>
+                                {proj.id} - {proj.name}
+                            </span>
                             <span
                                 className='secondary-content'
-                                onClick={() => getDetailedProject(proj.id)}>
-                                <i className='material-icons'>send</i>
+                            >
+                                <i
+                                    className='small material-icons blue-text darken-3'
+                                    onClick={() => getDetailedProject(proj.id)}
+                                >
+                                    create
+                                </i>
+                                <i className='small material-icons red-text darken-4'>delete</i>
                             </span>
                         </li>
                     ))
