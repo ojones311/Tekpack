@@ -7,6 +7,7 @@ getTemplateById = async (template_id) => {
         return temp
     }catch(error){
         console.log(error)
+
     }
 }
 
@@ -23,16 +24,22 @@ addNewTemplate = async (image, img_name) => {
     }
 }
 
-// addNewTemplate = async (image, img_name) => {
-//     try {
-//         const insertQuery = `INSERT INTO template (image, img_name) 
-//         VALUES($1, $2) RETURNING *`
-//         let response = await db.any(insertQuery, [image, img_name])
-//         return response;
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+
+addNewTemplate = async (image, img_name) => {
+    try {
+        const insertQuery = `INSERT INTO template (image, img_name) 
+        VALUES($1, $2) RETURNING *`
+        let response = await db.any(insertQuery, [image, img_name])
+        return response;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+getAll = async () => {
+    return await db.any(`SELECT * FROM template`)
+}
+
 
 getAll = async () => {
     return await db.any(`SELECT * FROM template`)
@@ -46,4 +53,4 @@ module.exports = {
 getTemplateById,
 addNewTemplate,
 getAll
-}
+};
