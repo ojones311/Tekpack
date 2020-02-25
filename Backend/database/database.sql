@@ -41,7 +41,7 @@ CREATE TABLE projects
 (
     comment_id SERIAL PRIMARY KEY,
     comment VARCHAR,
-    commentors_name VARCHAR REFERENCES users (name),
+    commentors_name VARCHAR REFERENCES users(name),
     projects_id INT REFERENCES projects(projects_id)
 );
 
