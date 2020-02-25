@@ -93,7 +93,7 @@ INSERT INTO projects
     (projects_id, description, date_made, created_by, quantity, color, img_url, template_id, users_id, form_data)
 VALUES
     (1, 't-shirt', '2020-02-23', 'peach', 10, 'blue', '' , 1, 1, ''),
-    (2, 'jeans', '2020-02-23', 'steve', 5, 'black', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',3,2, '' );
+    (2, 'jeans', '2020-02-23', 'steve', 5, 'black', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',3,2, "" );
 
 
 INSERT INTO measurement
