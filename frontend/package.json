@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
-    "dotenv": "^8.2.0",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -35,6 +34,7 @@
     ]
   },
   "devDependencies": {
-    "firebase": "^7.9.1"
+    "firebase": "^7.9.1",
+    "dotenv": "^8.2.0"
   }
 }
