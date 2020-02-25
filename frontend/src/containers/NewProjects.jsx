@@ -10,7 +10,6 @@ const NewProjects = (props) => {
 
     const templateCards = () => {
         return templates.map((item, i) => (
-            
             <div className='col s6 center'>
                 {/* {item.name} */}
                 <div className="card">
