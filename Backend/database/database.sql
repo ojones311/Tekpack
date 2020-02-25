@@ -8,17 +8,18 @@ CREATE DATABASE tekpack;
 CREATE TABLE users
 (
     users_id SERIAL PRIMARY KEY,
-    name VARCHAR UNIQUE,
-    email VARCHAR,
+    name VARCHAR,
+    email VARCHAR UNIQUE,
     number VARCHAR,
-    password VARCHAR);
+    password VARCHAR
+);
 
 CREATE TABLE template
 (
     template_id SERIAL PRIMARY KEY,
     image VARCHAR,
     img_name VARCHAR,
-    users_id INT REFERENCES users(id)
+    users_id INT REFERENCES users(users_id)
     );
 
 
@@ -33,15 +34,14 @@ CREATE TABLE projects
     img_url VARCHAR,
     template_id INT REFERENCES template(template_id),
     users_id INT REFERENCES users(users_id),
-    comment_id INT REFERENCES comments(comments_id),
     form_data VARCHAR
-    );
+);
 
     CREATE TABLE comments
 (
     comment_id SERIAL PRIMARY KEY,
     comment VARCHAR,
-    commentors_name VARCHAR REFERENCES users (name),
+    commentors_name VARCHAR REFERENCES users(name),
     projects_id INT REFERENCES projects(projects_id)
 );
 
@@ -50,6 +50,7 @@ CREATE TABLE projects
 CREATE TABLE measurement
 (
     measurement_id SERIAL PRIMARY KEY,
+    -- verison INT,
     HPS VARCHAR,
     CF VARCHAR,
     CB VARCHAR,
@@ -94,7 +95,7 @@ INSERT INTO projects
     (projects_id, description, date_made, created_by, quantity, color, img_url, template_id, users_id, form_data)
 VALUES
     (1, 't-shirt', '2020-02-23', 'peach', 10, 'blue', '' , 1, 1, ''),
-    (2, 'jeans', '2020-02-23', 'steve', 5, 'black', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',3,2, '' );
+    (2, 'jeans', '2020-02-23', 'steve', 5, 'black', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',3,2, "" );
 
 
 INSERT INTO measurement

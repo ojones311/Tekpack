@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const About = () => {
+    const [state, setState] = useState({
+        speed: 10
+    })
+
     return (
         <div>
             <h1>About page</h1>
