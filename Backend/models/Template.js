@@ -41,10 +41,6 @@ getAll = async () => {
 }
 
 
-getAll = async () => {
-    return await db.any(`SELECT * FROM template`)
-}
-
 // changeTemplate = async () => {
 
 // }
