@@ -8,10 +8,11 @@ CREATE DATABASE tekpack;
 CREATE TABLE users
 (
     users_id SERIAL PRIMARY KEY,
-    name VARCHAR UNIQUE,
-    email VARCHAR,
+    name VARCHAR,
+    email VARCHAR UNIQUE,
     number VARCHAR,
-    password VARCHAR);
+    password VARCHAR
+);
 
 CREATE TABLE template
 (
@@ -34,7 +35,7 @@ CREATE TABLE projects
     template_id INT REFERENCES template(template_id),
     users_id INT REFERENCES users(users_id),
     form_data VARCHAR
-    );
+);
 
     CREATE TABLE comments
 (
@@ -49,6 +50,7 @@ CREATE TABLE projects
 CREATE TABLE measurement
 (
     measurement_id SERIAL PRIMARY KEY,
+    -- verison INT,
     HPS VARCHAR,
     CF VARCHAR,
     CB VARCHAR,
