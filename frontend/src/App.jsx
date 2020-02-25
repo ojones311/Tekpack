@@ -7,6 +7,7 @@ import NavBar from './containers/NavBar'
 import Home from './containers/Home'
 import About from './containers/About'
 import Projects from './containers/Projects'
+import NewProject from './containers/NewProjects'
 import 'materialize-css'
 import * as firebase from 'firebase'
 
@@ -40,6 +41,7 @@ class App extends Component {
               <Route path='/login' component={Login} />
               <Route path='/signup' component={SignUp} />
               <Route path='/projects' exact component={Projects} />
+              <Route path='/projects/new' component={NewProject} />
               <Route path='/home' component={Home} />
               <Route path='/about' component={About} />
               <Route path='/projects/:id' component={Projects} />
