@@ -15,11 +15,7 @@ const Projects = (props) => {
                 <input id = "search-bar" type = "text" placeholder = "Search.."/>
             </form>
             
-            <div className = "Projects_Container">
-                <h2>Projects</h2>
-                <ProjectTemplate name = "project 1"/>
-
-            </div>
+            
             {
                 props.match.params.id ?
                     <Specifications {...props} />
