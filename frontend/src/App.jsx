@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <NavBar />
+          <NavBar isLoggedIn={this.state.loggedIn} />
           {/* <Login /> */}
           <div className='container'>
             <Switch>

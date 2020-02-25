@@ -115,3 +115,7 @@ img {
 .project-new:hover {
   transform: scale(1.04);
 }
+.design-img-display {
+  margin: 10px 0;
+  border: 1px solid black;
+}

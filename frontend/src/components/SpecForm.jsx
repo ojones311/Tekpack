@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { storage } from '../firebase/firebase'
+import UploadBar from './UploadBar'
+import UploadForm from './UploadForm'
 
 const SpecForm = (props) => {
     const [form, setForm] = useState({
@@ -9,7 +12,11 @@ const SpecForm = (props) => {
         'Arm width Right': '',
 
     })
-    const [url, setUrl] = useState('https://help.printsome.com/wp-content/uploads/2019/10/T-SHIRT-CHART-SIZES.png')
+    const [url, setUrl] = useState({
+        form: null,
+        url: 'https://help.printsome.com/wp-content/uploads/2019/10/T-SHIRT-CHART-SIZES.png',
+        progress: 0
+    })
     const { projectId } = props
 
     const specs = () => {
@@ -17,7 +24,7 @@ const SpecForm = (props) => {
         return (
             <div className='col s6'>
                 {obj.map(key => (
-                    <label>
+                    <label key={key}>
                         {key}
                         <input
                             type='text'
@@ -32,17 +39,48 @@ const SpecForm = (props) => {
         )
     }
 
-    const changeImage = (e) => {
-        setUrl(e.target.value)
+    const fileChange = e => {
+        if (e.target.files[0]) {
+            console.log(`File changed`, e.target.files[0])
+            setUrl({ ...url, form: e.target.files[0] })
+        }
     }
+
+    const uploadImage = async () => {
+        console.log(`Upload image`)
+        const img = url.form
+        const uploadTask = storage.ref(`images/${img.name}`).put(img)
+
+        uploadTask.on('state_changed',
+            snapshot => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                console.log(progress + '%')
+                setUrl({ ...url, progress })
+            },
+            error => {
+                console.log(error)
+            },
+            completed => {
+                storage.ref(`images`).child(img.name).getDownloadURL()
+                    .then(newUrl => {
+                        // Add/Update image url to backend
+                        setUrl({ ...url, url: newUrl })
+                    })
+            }
+        )
+    }
+
+    console.log(url)
 
     const designImg = (e) => (
         <div className='design-img col s6'>
-            {url ? <img src={url} className=''/> : null}
-            <label>
-                Product Design
-                <input type='text' onSubmit={changeImage} placeholder='Image url...' />
-            </label>
+            {url.url ? <img src={url.url} className='design-img-display' alt='Design Sketch' /> : null}
+
+            { url.progress > 0 ? <UploadBar progress={url.progress} /> : null }
+
+            <UploadForm fileChange={fileChange} />
+
+            <button className='btn' onClick={uploadImage}>Upload</button>
         </div>
     )
 
