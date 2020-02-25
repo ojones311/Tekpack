@@ -11,9 +11,7 @@ const Overview = (props) => {
 
     const [search, setSearch] = useState('')
 
-    const getDetailedProject = (id) => {
-        props.history.push(`/projects/${id}`)
-    }
+    const getDetailedProject = (id) => props.history.push(`/projects/${id}`)
 
     const deleteProject = (id) => {
         console.log(`Project ${id} deleted!`)
@@ -23,6 +21,8 @@ const Overview = (props) => {
         // If error display error
         setProjects(newList)
     }
+
+    const goToNewProject = () => props.history.push(`/projects/new`)
 
     const searchProjects = (e) => setSearch(e.target.value)
 
@@ -45,7 +45,9 @@ const Overview = (props) => {
                     <label for="icon_prefix">Search Projects</label>
                     {/* <input type='text' placeholder='Search...'/> */}
                 </div>
-                <button className='btn red project-new col s4'>
+                <button 
+                    className='btn red project-new col s4' 
+                    onClick={goToNewProject}>
                     <i className="material-icons right">add_circle</i>
                     New Project
                 </button>
