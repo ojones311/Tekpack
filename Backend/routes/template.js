@@ -43,7 +43,7 @@ router.get('/:template_id', async (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
-    console.log(req.body)
+    // console.log(req.body)
     const { image, img_name } = req.body
 
     try {
