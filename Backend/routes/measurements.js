@@ -24,28 +24,42 @@ router.get('/project/:project_id', async(req, res, next) => {
         })
     }
 })
+//For this route we should create the measurment without the formData
+//We should add the formData on patch requests to the projects table 
+//Measurements table shouldnt stringify itself
 router.post('/form', async (req, res, next) => {
-    const formData = {...req.body}
-    delete formData.measurement_id
-    delete formData.projects_id
+    // const formData = {...req.body}
+    // delete formData.measurement_id
+    // delete formData.projects_id
 
-    const stringData = JSON.stringify(formData)
+    // const stringData = JSON.stringify(formData)
 
     // 3 things measureid, projectsid, stringdata
 
-
-
-
-    const {measurement_id, hps, cf, cb, ss, projects_id} = req.body
-    const measurements = {
-        measurement_id,
-        hps,
-        cf,
-        cb, 
-        ss, 
-        projects_id  
+    const { hps, cf, cb, ss, projects_id} = req.body
+    try{
+        const measurements = {
+            hps,
+            cf,
+            cb, 
+            ss, 
+            projects_id, 
+            // stringData
+        }
+        const newMeasurements = await Measurements.postNewMeasurements(measurements)
+        res.json({
+            payload:newMeasurements,
+            msg: 'Posted new measurements',
+            err: false
+        })
+    }catch(error){
+        console.log('rt error', error)
+        res.json({
+            msg: 'Measurements couldnt post',
+            err: true
+        })
     }
-    const newMeasurements = 
+    
 })
 
 
