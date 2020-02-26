@@ -40,12 +40,12 @@ router.get('/project/:projects_id', async (req, res, next) => {
             err: true
         })
     }
-})
+    })
+
 
 router.post('/:projects_id', async (req, res, next) => {
     const {comment, commentors_name} = req.body
     console.log(req.body)
-
     try{
         const addComment = await comment.addNewComment(comment, commentors_name)
         res.json({
