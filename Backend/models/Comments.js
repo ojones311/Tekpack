@@ -47,4 +47,5 @@ module.exports = {
     getCommentsByID,
     addNewComment,
     getCommentsByProjectID,
+    getCommentorName
 }
