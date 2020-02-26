@@ -9,15 +9,24 @@ getAllMeasurementsByProjectId = async (id) => {
     }
 }
 
-postnewMeasurements = async (newMeasurements) => {
+postNewMeasurements = async (newMeasurements) => {
+    const {projects_id} = newMeasurements
     try{
-       existingMeasurementObject = await db.any('SELECT * FROM measurements WHERE projects_id= $1') 
-       deleteShow = await db.one
-       if(existingMeasurement){
-           
+       existingMeasurementObject = await db.any('SELECT * FROM measurements WHERE projects_id= $1', [projects_id]) 
+       if(existingMeasurementObject){
+            await db.one('DELETE FROM measurements WHERE projects_id= $1', projects_id)
        }
+       const insertQuery = 'INSERT INTO measurements(hps, cf, cb, ss, projects_id)'
+       newMeasurementObject = await db.one(insertQuery, {
+            hps: newMeasurements.hps,
+            cf: newMeasurements.cps,
+            cb: newMeasurements.cb,
+            ss: newMeasurements.ss,
+            projects_id: newMeasurements.projects_id,
+            // stringData: newMeasurements.stringData    
+       })
     }catch(error){
-
+        console.log('mod error', error)
     }
 }
 
@@ -27,5 +36,6 @@ postnewMeasurements = async (newMeasurements) => {
 
 
 module.exports = {
-    getAllMeasurementsByProjectId
+    getAllMeasurementsByProjectId,
+    postNewMeasurements
 }
