@@ -25,6 +25,12 @@ yarn-error.log*
 
 # files
 *config.js
+<<<<<<< HEAD
 frontend/src/firebase/config*
 *config.js*
 *config*
+=======
+frontend/src/firebase/config
+*config.js*
+*config*
+>>>>>>> 7b323c7720f36a6cef056c422872720fc1af85ce
