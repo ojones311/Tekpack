@@ -13,7 +13,7 @@
 
 # misc
 .DS_Store
-.env
+.env.api
 .env.local
 .env.development.local
 .env.test.local
@@ -25,7 +25,7 @@ yarn-error.log*
 
 # files
 *config.js
-frontend/src/firebase/config
+frontend/src/firebase/config*
 *config.js*
 *config*
 
