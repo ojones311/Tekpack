@@ -42,7 +42,7 @@ const Overview = (props) => {
                         className="validate"
                         onChange={searchProjects}
                     ></input>
-                    <label for="icon_prefix">Search Projects</label>
+                    <label htmlFor="icon_prefix">Search Projects</label>
                     {/* <input type='text' placeholder='Search...'/> */}
                 </div>
                 <button 

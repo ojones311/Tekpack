@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import pic from '../assets/download.png'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
-import { axios } from 'axios'
+import axios from 'axios'
 
 
 class Login extends Component {
@@ -10,21 +10,28 @@ class Login extends Component {
         super()
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            userEmail: 'OJones@project.com',
+            userPassWord: 1234567890
         }
     }
 
-    componentDidMount = async () =>{
+    // getAllUsers = async () =>{
+    //     try{
+    //         let res = await axios.get('http://localhost:3100/api/users/all')
+    //         console.log(res.data.payload)
+
+
+    //     }catch(err){
+    //         console.log(err)
+
+    //     }
+    // }
+
+    componentDidMount = async () => {
         console.log("Log in component mounted")
-        try{
-            let res = await axios.get('http://localhost:3100/api')
-            console.log(res)
+        // this.getAllUsers()
 
-
-        }catch(err){
-            console.log(err)
-
-        }
 
     }
 
@@ -35,6 +42,29 @@ class Login extends Component {
         })
     }
 
+    handleFormSubmit = async (e) => {
+        e.preventDefault();
+        let { email, userEmail, password, userPassWord } = this.state;
+
+        if ((userEmail === email) && (userPassWord === password)) {
+            console.log("login successfull")
+        } else {
+            console.log("un-successful login")
+        }
+
+        // try {
+        //     let res = await axios.get('http://localhost:3100/api/users/all')
+        //     console.log(res.data.payload)
+
+
+        // } catch (err) {
+        //     console.log(err)
+
+        // }
+    }
+
+
+
     render() {
         let { email, password } = this.state
         return (
@@ -42,7 +72,7 @@ class Login extends Component {
                 <img src={pic} alt="brokenLink" />
                 <h1>Log In Component</h1>
 
-                <form>
+                <form onSubmit={this.handleFormSubmit}>
 
                     <input
                         type="text"
@@ -59,10 +89,17 @@ class Login extends Component {
                         name="password"
                         value={password}
                         onChange={this.handleChange}
-                        required /><br />
+                        required />
 
-                    <Button variant="outlined" color="primary">Sign In</Button><br />
-                    <Button variant="outlined" color="primary">Sign up</Button>
+                    <br />
+
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Log In
+                    <i class="material-icons right">send</i>
+                    </button>
+
+
+                    {/* <Button variant="outlined" color="primary">Sign In</Button><br /> */}
+                    {/* <Button variant="outlined" color="primary">Sign up</Button> */}
                 </form>
 
             </div>
