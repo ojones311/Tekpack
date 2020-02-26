@@ -34,8 +34,18 @@ addNewComment = async (comment, commentors_email) => {
     }
 }
 
+getCommentorName = async (commentors_email) => {
+    try{
+        const commName = await db.one(`SELECT name, comment FROM comments INNER JOIN users ON comments.commentors_email = users.email WHERE users.email = $1`, [commentors_email])
+        return commName;
+    }catch(error){
+        console.log(error)
+    }
+}
+
 module.exports = {
     getCommentsByID,
     addNewComment,
     getCommentsByProjectID,
+    getCommentorName
 }
