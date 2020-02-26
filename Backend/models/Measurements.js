@@ -22,20 +22,31 @@ postNewMeasurements = async (newMeasurements) => {
     console.log(newMeasurements)
     try{
        existingMeasurementObject = await db.any('SELECT * FROM measurement WHERE projects_id= $1', [projects_id]) 
-       if(!existingMeasurementObject){
-            await db.one('DELETE FROM measurement WHERE projects_id= $1 RETURNING *', projects_id)
-            const insertQuery = 'INSERT INTO measurement(HPS, CF, CB, SS, projects_id) VALUES($/HPS/, $/CF/, $/CB/, $/SS/, $/projects_id/) RETURNING *'
+       const insertQuery = 'INSERT INTO measurement(HPS, CF, CB, SS, projects_id) VALUES($/HPS/, $/CF/, $/CB/, $/SS/, $/projects_id/) RETURNING *'
 
-            newMeasurementObject = await db.one(insertQuery, {
+    //    if(existingMeasurementObject !== undefined){
+            // await db.one('DELETE FROM measurement WHERE projects_id= $1', projects_id)
+    
+            changedMeasurementObject = await db.one(insertQuery, {
                 HPS: newMeasurements.HPS,
                 CF: newMeasurements.CF,
                 CB: newMeasurements.CB,
                 SS: newMeasurements.SS,
                 projects_id: newMeasurements.projects_id,   
             })
-            console.log(newMeasurementObject)
-            return newMeasurementObject
-        }   
+            console.log('Replacing form:',changedMeasurementObject)
+            return changedMeasurementObject
+        // } else{
+            // newMeasurementObject = await db.one(insertQuery, {
+            //     HPS: newMeasurements.HPS,
+            //     CF: newMeasurements.CF,
+            //     CB: newMeasurements.CB,
+            //     SS: newMeasurements.SS,
+            //     projects_id: newMeasurements.projects_id,  
+            // })
+            // console.log('New measurement form:',newMeasurementObject)
+            // return newMeasurementObject
+        // }   
     }catch(error){
         console.log('mod error', error)
     }
