@@ -1,24 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import ProjectList from './ProjectList'
 
 const Overview = (props) => {
     const [projects, setProjects] = useState([
-        { id: 1, name: 'T-Shirt' },
-        { id: 2, name: 'Jeans' },
-        { id: 3, name: 'Sweater' },
-        { id: 4, name: 'Gloves' }
+        // { id: 1, name: 'T-Shirt' },
+        // { id: 2, name: 'Jeans' },
+        // { id: 3, name: 'Sweater' },
+        // { id: 4, name: 'Gloves' }
     ])
+
+    useEffect(() => {
+        console.log(`working`)
+        const getAllProjects = async () => {
+            try {
+                const data = await axios.get(`/projects/all`)
+                console.log(data.data)
+                setProjects(data.data.payload)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getAllProjects();
+    }, [])
 
     const [search, setSearch] = useState('')
 
     const getDetailedProject = (id) => props.history.push(`/projects/${id}`)
 
-    const deleteProject = (id) => {
+    const deleteProject = async (id) => {
         console.log(`Project ${id} deleted!`)
-        const newList = projects.filter(proj => proj.id !== id)
+        const newList = projects.filter(proj => proj.projects_id !== id)
         // Make Request to backend to delete a project
         // If success show new list
         // If error display error
+        // try {
+        //     const data = await  axios.post(`/projects/delete/${id}`)
+        // } catch (err) {
+        //  console.log)err
+        // }
         setProjects(newList)
     }
 
@@ -31,22 +51,18 @@ const Overview = (props) => {
             <h1 className='center'>Overview component</h1>
 
             <div className='row valign-wrapper'>
-                {/* <div class="progress">
-                <div class="indeterminate"></div>
-                </div> */}
                 <div className="input-field col s6 pull-s1">
                     <i className="material-icons prefix">search</i>
-                    <input 
-                        type='text' 
-                        id="icon_prefix" 
+                    <input
+                        type='text'
+                        id="icon_prefix"
                         className="validate"
                         onChange={searchProjects}
                     ></input>
                     <label for="icon_prefix">Search Projects</label>
-                    {/* <input type='text' placeholder='Search...'/> */}
                 </div>
-                <button 
-                    className='btn red project-new col s4' 
+                <button
+                    className='btn red project-new col s4'
                     onClick={goToNewProject}>
                     <i className="material-icons right">add_circle</i>
                     New Project
@@ -57,12 +73,16 @@ const Overview = (props) => {
                 <li className='collection-header'>
                     <h3>Projects</h3>
                 </li>
-                <ProjectList
-                    search={search}
-                    projects={projects}
-                    getDetailedProject={getDetailedProject}
-                    deleteProject={deleteProject}
-                />
+                {
+                    projects.length ?
+                        <ProjectList
+                            search={search}
+                            projects={projects}
+                            getDetailedProject={getDetailedProject}
+                            deleteProject={deleteProject}
+                        />
+                        : null
+                }
             </ul>
         </div>
     )

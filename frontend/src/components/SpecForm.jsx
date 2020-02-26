@@ -49,7 +49,7 @@ const SpecForm = (props) => {
     const uploadImage = async () => {
         console.log(`Upload image`)
         const img = url.form
-        const uploadTask = storage.ref(`images/${img.name}`).put(img)
+        const uploadTask = storage.ref(`images/${img.name}`).put(img) // Add images/userid/...
 
         uploadTask.on('state_changed',
             snapshot => {

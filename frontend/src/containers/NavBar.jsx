@@ -15,8 +15,8 @@ const NavBar = (props) => {
         { name: 'About', path: '/about', icon: 'info' }
     ]
 
-    const hamburgerMenu = () => {
-        const listItems = menuList.map(item => (
+    const hamburgerMenu = (arr) => {
+        const listItems = arr.map(item => (
             <NavLink to={item.path} className='hamburger-item'>
                 <li
                     onClick={() => showMenu()}
@@ -46,7 +46,7 @@ const NavBar = (props) => {
     return (
         <nav className="nav-wrapper red">
             <div className='container'>
-                <NavLink to='/' className='brand-logo'>TekPack</NavLink>
+                <NavLink to='/home' className='brand-logo'>TekPack</NavLink>
                 <a
                     href={false}
                     data-target="mobile-demo"
@@ -58,14 +58,28 @@ const NavBar = (props) => {
                         menu
                     </i>
                 </a>
-                {state.showHamburger ? hamburgerMenu() : null}
-                <ul className='right hide-on-med-and-down'>
+                {props.isLoggedIn ?
+                    state.showHamburger ?
+                        hamburgerMenu(menuList)
+                        : null
+                    :
+                    state.showHamburger ?
+                        hamburgerMenu([{ name: 'Home', path: '/home', icon: 'home' }])
+                        : null
+                }
+
+                < ul className='right hide-on-med-and-down'>
                     <li className={route.slice(0, 5) === '/home' ? 'active' : ''}><NavLink to='/'>Home</NavLink></li>
-                    <li className={route.slice(0, 9) === '/projects' ? 'active' : ''}><NavLink to='/projects'>Projects</NavLink></li>
-                    <li className={route.slice(0, 6) === '/about' ? 'active' : ''}><NavLink to='/about'>About</NavLink></li>
+                    {props.isLoggedIn ?
+                        <>
+                            <li className={route.slice(0, 9) === '/projects' ? 'active' : ''}><NavLink to='/projects'>Projects</NavLink></li>
+                            <li className={route.slice(0, 6) === '/about' ? 'active' : ''}><NavLink to='/about'>About</NavLink></li>
+                        </>
+                        : null
+                    }
                 </ul>
             </div>
-        </nav>
+        </nav >
     )
 }
 
