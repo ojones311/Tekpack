@@ -20,7 +20,7 @@ CREATE TABLE template
     image VARCHAR,
     img_name VARCHAR,
     users_id INT REFERENCES users(users_id)
-    );
+);
 
 
 CREATE TABLE projects
@@ -37,7 +37,7 @@ CREATE TABLE projects
     form_data VARCHAR
 );
 
-    CREATE TABLE comments
+CREATE TABLE comments
 (
     comment_id SERIAL PRIMARY KEY,
     comment VARCHAR,
@@ -108,4 +108,4 @@ INSERT INTO comments
     (comment, commentors_name)
 VALUES
     ('I would like 1 sample shipped to me in 14 days if possible.', 'Owen Jones'),
-    ('Can a pocket be added to the leg ?','Jonathan Fagan' );
+    ('Can a pocket be added to the leg ?','Jonathan Fagan');
