@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import pic from '../assets/download.png'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
+import { axios } from 'axios'
 
 
 class Login extends Component {
@@ -13,8 +14,18 @@ class Login extends Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount = async () =>{
         console.log("Log in component mounted")
+        try{
+            let res = await axios.get('http://localhost:3100/api')
+            console.log(res)
+
+
+        }catch(err){
+            console.log(err)
+
+        }
+
     }
 
     handleChange = (e) => {
@@ -48,9 +59,9 @@ class Login extends Component {
                         name="password"
                         value={password}
                         onChange={this.handleChange}
-                        required /><br/>
+                        required /><br />
 
-                    <Button variant="outlined" color="primary">Sign In</Button><br/>
+                    <Button variant="outlined" color="primary">Sign In</Button><br />
                     <Button variant="outlined" color="primary">Sign up</Button>
                 </form>
 
