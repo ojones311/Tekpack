@@ -2,8 +2,6 @@ var express = require('express')
 var router = express.Router();
 const comment = require('../models/Comments')
 
-
-
 router.get('/:comment_id', async (req, res, next) => {
     const {comment_id} = req.params
     try {

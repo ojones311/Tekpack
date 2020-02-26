@@ -20,7 +20,7 @@ CREATE TABLE template
     image VARCHAR,
     img_name VARCHAR,
     users_id INT REFERENCES users(users_id)
-    );
+);
 
 
 CREATE TABLE projects
@@ -37,7 +37,7 @@ CREATE TABLE projects
     form_data VARCHAR
 );
 
-    CREATE TABLE comments
+CREATE TABLE comments
 (
     comment_id SERIAL PRIMARY KEY,
     comment VARCHAR,
@@ -108,5 +108,4 @@ INSERT INTO measurement
 VALUES
     (10, 5, 5, 2, 1),
     (5, 4, 12, 6, 2);
-
 
