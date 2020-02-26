@@ -42,6 +42,10 @@ router.get('/project/:projects_id', async (req, res, next) => {
     }
     })
 
+    router.get('/comment/:commentors_email', async (req, res, next) => {
+        
+    })
+
 
 router.post('/:projects_id', async (req, res, next) => {
     const {comment, commentors_email} = req.body
