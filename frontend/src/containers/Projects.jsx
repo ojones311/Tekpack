@@ -1,10 +1,9 @@
 import React from 'react'
-import { Switch, Link, Route } from 'react-router-dom'
+// import { Switch, Link, Route } from 'react-router-dom'
 import Specifications from '../components/Specifications'
 import Overview from '../components/Overview'
 
 const Projects = (props) => {
-    console.log(props)
     return (
         <div>
             {/* <h1>Projects Components</h1> */}
