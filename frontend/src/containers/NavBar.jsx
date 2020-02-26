@@ -17,13 +17,13 @@ const NavBar = (props) => {
 
     const hamburgerMenu = (arr) => {
         const listItems = arr.map(item => (
-            <NavLink to={item.path} className='hamburger-item'>
+            <NavLink to={item.path} className='hamburger-item' key={item.name}>
                 <li
                     onClick={() => showMenu()}
                     className='collection-item'
                 >
                     <span className='secondary-content left'>
-                        <i class="small material-icons">{item.icon}</i>
+                        <i className="small material-icons">{item.icon}</i>
                     </span>
                     {item.name}
                 </li>
@@ -41,14 +41,11 @@ const NavBar = (props) => {
         showHamburger: !state.showHamburger
     })
 
-    console.log(state)
-
     return (
         <nav className="nav-wrapper red">
             <div className='container'>
                 <NavLink to='/home' className='brand-logo'>TekPack</NavLink>
                 <a
-                    href={false}
                     data-target="mobile-demo"
                     className="sidenav-trigger">
                     <i
