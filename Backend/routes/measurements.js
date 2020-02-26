@@ -6,6 +6,23 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
+router.get('/all', async (req,res,next) => {
+    try{
+        const allMeasurements = await Measurements.getAllMeasurements()
+        res.json({
+            payload: allMeasurements,
+            msg: 'Getting all measurements',
+            err: false
+        })
+    }catch(error){
+        console.log('rt error', error)
+        res.json({
+            payload: null,
+            msg: 'Failed to get all measurements',
+            err: true
+        })
+    }
+})
 router.get('/project/:project_id', async(req, res, next) => {
     const {project_id} = req.params
     try{
@@ -36,19 +53,19 @@ router.post('/form', async (req, res, next) => {
 
     // 3 things measureid, projectsid, stringdata
 
-    const { hps, cf, cb, ss, projects_id} = req.body
+    const { HPS, CF, CB, SS, projects_id} = req.body
     try{
         const measurements = {
-            hps,
-            cf,
-            cb, 
-            ss, 
+            HPS,
+            CF,
+            CB, 
+            SS, 
             projects_id, 
             // stringData
         }
         const newMeasurements = await Measurements.postNewMeasurements(measurements)
         res.json({
-            payload:newMeasurements,
+            payload: newMeasurements,
             msg: 'Posted new measurements',
             err: false
         })
