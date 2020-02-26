@@ -16,6 +16,19 @@ class App extends Component {
     currentRoute: '/home'
   }
 
+  privateRoutes = () => (
+    <Switch>
+      <Route path='/login' component={Login} />
+      <Route path='/signup' component={SignUp} />
+      <Route path='/projects' exact component={Projects} />
+      <Route path='/projects/new' component={NewProject} />
+      <Route path='/home' component={Home} />
+      <Route path='/about' component={About} />
+      <Route path='/projects/:id' component={Projects} />
+      <Redirect from='/' to='/home' />
+    </Switch>
+  )
+
   render() {
     return (
       <Router>
@@ -23,16 +36,18 @@ class App extends Component {
           <NavBar isLoggedIn={this.state.loggedIn} />
           {/* <Login /> */}
           <div className='container'>
-            <Switch>
-              <Route path='/login' component={Login} />
-              <Route path='/signup' component={SignUp} />
-              <Route path='/projects' exact component={Projects} />
-              <Route path='/projects/new' component={NewProject} />
-              <Route path='/home' component={Home} />
-              <Route path='/about' component={About} />
-              <Route path='/projects/:id' component={Projects} />
-              <Redirect from='/' to='/home' />
-            </Switch>
+            {
+              this.state.loggedIn ?
+                this.privateRoutes()
+                : (
+                  <Switch>
+                    <Route path='/login' component={Login} />
+                    <Route path='/signup' component={SignUp} />
+                    <Route path='/home' component={Home} />
+                    <Redirect from='/' to='/home' />
+                  </Switch>
+                )
+            }
           </div>
         </div>
       </Router>
