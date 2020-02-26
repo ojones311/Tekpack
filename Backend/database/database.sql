@@ -109,12 +109,3 @@ VALUES
     (10, 5, 5, 2, 1),
     (5, 4, 12, 6, 2);
 
-<<<<<<< HEAD
-INSERT INTO comments
-    (comment, commentors_name)
-VALUES
-    ('I would like 1 sample shipped to me in 14 days if possible.', 'Owen Jones'),
-    ('Can a pocket be added to the leg ?','Jonathan Fagan');
-=======
-
->>>>>>> 7b323c7720f36a6cef056c422872720fc1af85ce

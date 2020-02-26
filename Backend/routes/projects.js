@@ -23,7 +23,6 @@ router.get('/all', async (req, res, next) => {
     }
 })
 
-
 router.get('/user/:users_id', async (req, res, next) => {
     const { users_id } = req.params
     try {
