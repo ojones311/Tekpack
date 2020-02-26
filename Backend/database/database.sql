@@ -98,13 +98,13 @@ VALUES
     ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ21-G3anJQDewdrQNUapjlShHCAmo6eyuONgYPRSpoTjV1i_mB', 'socks');
 
 INSERT INTO projects
-    (projects_id, description, date_made, created_by, quantity, color, img_url, template_id, users_id, form_data)
+    ( description, date_made, created_by, quantity, color, img_url, template_id, users_id, form_data)
 VALUES
-    (1, 't-shirt', '2020-02-23', 'peach', 10, 'blue', '' , 1, 1, ''),
-    (2, 'jeans', '2020-02-23', 'steve', 5, 'black', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',NULL,2, '' ),
-    (3, 'socks', '2020-02-25', 'frank', 80, 'yellow', '', NULL , 4 ,''),
-    (4, 't-shirt', '2020-02-02', 'rose', 5, 'white with blue stripes', '', NULL, 4, ''),
-    (5,'hoodie', '2020-02-23', 'rose', 10, 'purple', '', NULL, 3,'');
+    ('t-shirt', '2020-02-23', 'peach', 10, 'blue', '' , 1, 1, ''),
+    ('jeans', '2020-02-23', 'steve', 5, 'black', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',NULL,2, '' ),
+    ( 'socks', '2020-02-25', 'frank', 80, 'yellow', '', NULL , 4 ,''),
+    ('t-shirt', '2020-02-02', 'rose', 5, 'white with blue stripes', '', NULL, 4, ''),
+    ('hoodie', '2020-02-23', 'rose', 10, 'purple', '', NULL, 3,'');
 
 INSERT INTO comments
     (comment, commentors_email)
