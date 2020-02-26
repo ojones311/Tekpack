@@ -11,12 +11,11 @@ const Overview = (props) => {
     ])
 
     useEffect(() => {
-        console.log(`working`)
         const getAllProjects = async () => {
             try {
-                const data = await axios.get(`/projects/all`)
-                console.log(data.data)
-                setProjects(data.data.payload)
+                // GET PROJECTS BY USER ID
+                const { data: { payload }} = await axios.get(`/projects/all`)
+                setProjects(payload)
             } catch (err) {
                 console.log(err)
             }
@@ -59,7 +58,7 @@ const Overview = (props) => {
                         className="validate"
                         onChange={searchProjects}
                     ></input>
-                    <label for="icon_prefix">Search Projects</label>
+                    <label htmlFor="icon_prefix">Search Projects</label>
                 </div>
                 <button
                     className='btn red project-new col s4'
