@@ -26,7 +26,7 @@ app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/template', templateRouter);
 app.use('/api/comments', commentsRouter);
-app.use('api/projects', projectsRouter);
+app.use('/api/projects', projectsRouter);
 app.use('/api/measurements', measurementsRouter);
 
 

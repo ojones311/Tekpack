@@ -9,7 +9,17 @@ getAllMeasurementsByProjectId = async (id) => {
     }
 }
 
+postnewMeasurements = async (newMeasurements) => {
+    try{
+       existingMeasurementObject = await db.any('SELECT * FROM measurements WHERE projects_id= $1') 
+       deleteShow = await db.one
+       if(existingMeasurement){
+           
+       }
+    }catch(error){
 
+    }
+}
 
 
 

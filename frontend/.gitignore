@@ -22,3 +22,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#files
+*config.js
+frontend/src/firebase/config*
+*config.js*
+*config*
