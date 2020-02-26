@@ -8,14 +8,7 @@ const Projects = (props) => {
     console.log(props)
     return (
         <div>
-            <h1>Projects Components</h1>
-            <h2>Projects Components</h2>
-
-            <form className = "search-box">
-                <input id = "search-bar" type = "text" placeholder = "Search.."/>
-            </form>
-            
-            
+            {/* <h1>Projects Components</h1> */}
             {
                 props.match.params.id ?
                     <Specifications {...props} />
