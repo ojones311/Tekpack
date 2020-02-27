@@ -4,12 +4,10 @@ const User = require('../models/User')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-
-
   res.send('respond with a resource');
 });
 
-router.get('userid/:id', async (req,res,next) => {
+router.get('/userid/:id', async (req,res,next) => {
   const {id} = req.params
     try{
       const user = await User.getUserById(id)
@@ -28,7 +26,7 @@ router.get('userid/:id', async (req,res,next) => {
 })
 
 //Add a middleware to get rid of spaces and lowercase all chars
-router.get('name/:name', async (req, res, next) => {
+router.get('/name/:name', async (req, res, next) => {
   const {name} = req.params
   try{
     const user =  await User.getUserByName(name)

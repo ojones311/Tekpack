@@ -1,27 +1,40 @@
-const db = require('../database/index')
+const db = require('../database/index.js')
 
-// getAllProjects 
-getAllProjectsByUserId = async(userId) => {
+getAllProjects = async () => {
     try{
-        const myProjectsByUserId = await db.any('SELECT * FROM projects WHERE users_id= $/userId/', {userId})
+        const allProjects = await db.any('SELECT * FROM projects')
+        return allProjects
+    }catch(error){
+        console.log('mod error', error)
+    }
+}
+
+getAllProjectsByUserId = async(users_id) => {
+    try{
+        const myProjectsByUserId = await db.one('SELECT * FROM projects WHERE users_id= $1', [users_id])
         return myProjectsByUserId
     }catch(error){
         console.log('mod error', error)
     }
 }
 
-getProjectByProjectId = async(projectId) => {
+getProjectByProjectId = async(projects_id) => {
+    console.log(`MODEL: `, projects_id)
     try{
-        const myProject = await db.one('SELECT * FROM projects WHERE product_id= $/projectId/', {projectId})
+        const myProject = await db.one('SELECT * FROM projects WHERE projects_id = $1', [projects_id])
         return myProject
     }catch(error){
         console.log('mod error',error)
     }
 }
 
-createNewProject = async () => {
+createNewProject = async(proj) => {
+    const {description, date_made, created_by, quantity, color, img_url} = proj
     try{
-        await db.one('INSERT')
+        const insertQuery = `INSERT INTO projects (description, date_made, created_by, quantity, color, img_url) 
+        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
+        let response = await db.any(insertQuery, [description, date_made, created_by, quantity, color, img_url])
+        return response;
     }catch(error){
         console.log('mod error', error)
     }
@@ -36,13 +49,26 @@ editProject = async () => {
 }
 deleteProject = async () => {
     try{
+        let description = req.params.description
+        let date_made = req.params.date_made
+        let created_by = req.params.created_by
+        let quantity = req.params.quantity
+        let color = req.params.color
+        let img_url = req.params.img_url
 
+        let delQuery = 
+        `DELETE from projects 
+        WHERE description = $1 AND date_made = $2 AND created_by = $3 AND quantity = $4 AND color = $5 AND img_url = $6`
+        await db.none(delQuery, [description, date_made, created_by, quantity, color, img_url])
     }catch(error){
         console.log('mod error', error)
     }
 }
 
 module.exports = {
+    getAllProjects,
     getAllProjectsByUserId,
-    getProjectByProjectId
+    getProjectByProjectId,
+    createNewProject,
+    deleteProject
 }

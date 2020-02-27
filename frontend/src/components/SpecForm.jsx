@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { storage } from '../firebase/firebase'
 import UploadBar from './UploadBar'
 import UploadForm from './UploadForm'
+import axios from 'axios'
 
 const SpecForm = (props) => {
     const [form, setForm] = useState({
@@ -17,7 +18,21 @@ const SpecForm = (props) => {
         url: 'https://help.printsome.com/wp-content/uploads/2019/10/T-SHIRT-CHART-SIZES.png',
         progress: 0
     })
+
     const { projectId } = props
+
+    useEffect(() => {
+        const getSpecs = async () => {
+            try {
+                const { data: { payload }} = await axios.get(`/measurements/project/${projectId}`)
+                console.log(payload)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getSpecs()
+    }, [])
+
 
     const specs = () => {
         const obj = Object.keys(form)
@@ -49,7 +64,7 @@ const SpecForm = (props) => {
     const uploadImage = async () => {
         console.log(`Upload image`)
         const img = url.form
-        const uploadTask = storage.ref(`images/${img.name}`).put(img)
+        const uploadTask = storage.ref(`images/${img.name}`).put(img) // Add images/userid/...
 
         uploadTask.on('state_changed',
             snapshot => {

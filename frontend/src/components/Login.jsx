@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
-import { Link } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import { withRouter } from 'react-router-dom'
+import axios from 'axios'
 
 
 class Login extends Component {
@@ -9,12 +9,17 @@ class Login extends Component {
         super()
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            userEmail: 'OJones@project.com',
+            userPassWord: 1234567890
         }
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         console.log("Log in component mounted")
+        // this.getAllUsers()
+
+
     }
 
     handleChange = (e) => {
@@ -24,14 +29,29 @@ class Login extends Component {
         })
     }
 
+    handleFormSubmit = async (e) => {
+        e.preventDefault();
+        let { email, userEmail, password, userPassWord } = this.state;
+
+        if ((userEmail === email) && (userPassWord.toString() === password)) {
+            console.log("login successfull")
+            this.props.history.push("/projects")
+        } else {
+            console.log("un-successful login")
+        }
+    }
+
+
+
     render() {
-        let { email, password } = this.state
+        let { email,userEmail,userPassWord, password } = this.state
+        console.log(`${userEmail}, ${userPassWord}`)
         return (
             <div className="Login-Page">
                 <img src={pic} alt="brokenLink" />
                 <h1>Log In Component</h1>
 
-                <form>
+                <form onSubmit={this.handleFormSubmit}>
 
                     <input
                         type="text"
@@ -48,10 +68,17 @@ class Login extends Component {
                         name="password"
                         value={password}
                         onChange={this.handleChange}
-                        required /><br/>
+                        required />
 
-                    <Button variant="outlined" color="primary">Sign In</Button><br/>
-                    <Button variant="outlined" color="primary">Sign up</Button>
+                    <br />
+
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Log In
+                    <i class="material-icons right">send</i>
+                    </button>
+
+
+                    {/* <Button variant="outlined" color="primary">Sign In</Button><br /> */}
+                    {/* <Button variant="outlined" color="primary">Sign up</Button> */}
                 </form>
 
             </div>
@@ -60,4 +87,4 @@ class Login extends Component {
 
 }
 
-export default Login
+export default withRouter(Login)
