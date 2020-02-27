@@ -17,7 +17,8 @@ const SpecForm = (props) => {
     const [url, setUrl] = useState({
         form: null,
         url: 'https://help.printsome.com/wp-content/uploads/2019/10/T-SHIRT-CHART-SIZES.png',
-        progress: 0
+        progress: 0,
+        error: false
     })
 
     const { projectId } = props
@@ -26,14 +27,13 @@ const SpecForm = (props) => {
         const getSpecs = async () => {
             try {
                 const { data: { payload }} = await axios.get(`/measurements/project/${projectId}`)
-                console.log(payload )
+                console.log(`Form measurements: `, payload )
             } catch (err) {
                 console.log(err)
             }
         }
         getSpecs()
     }, [])
-
 
     const specs = () => {
         const obj = Object.keys(form)
@@ -65,7 +65,13 @@ const SpecForm = (props) => {
     const uploadImage = async () => {
         console.log(`Upload image`)
         const img = url.form
-        const uploadTask = storage.ref(`images/${img.name}`).put(img) // Add images/userid/...
+
+        if (url.form.size > 2000000) {
+            setUrl({ ...url, error: true })
+            return
+        }
+
+        const uploadTask = storage.ref(`images/${props.state.user_id}/${img.name}`).put(img) // Add images/userid/...
 
         uploadTask.on('state_changed',
             snapshot => {
@@ -77,13 +83,20 @@ const SpecForm = (props) => {
                 console.log(error)
             },
             completed => {
-                storage.ref(`images`).child(img.name).getDownloadURL()
+                storage.ref(`images/${props.state.user_id}`).child(img.name).getDownloadURL()
                     .then(newUrl => {
                         // Add/Update image url to backend
-                        setUrl({ ...url, url: newUrl })
+                        // const res = await axios.put(`/${projectId}`, newUrl)
+                        setUrl({ form: null, url: newUrl, progress: 0, error: false })
                     })
             }
         )
+    }
+
+    const submitSpecForm = async () => {
+        // Check if all fields are filled if not display error and return
+        // Else proceed to posting it to the backend
+        // On success push them/display success component which shows url link, excel download link, and QR code to url link
     }
 
     console.log(url)
@@ -94,7 +107,7 @@ const SpecForm = (props) => {
 
             { url.progress > 0 ? <UploadBar progress={url.progress} /> : null }
 
-            <UploadForm fileChange={fileChange} />
+            <UploadForm fileChange={fileChange} error={url.error} />
 
             <button className='btn' onClick={uploadImage}>Upload</button>
         </div>

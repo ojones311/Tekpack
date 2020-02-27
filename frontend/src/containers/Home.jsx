@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Home = (props) => {
-    const route = props.match.path
+    // const route = props.match.path
     return (
         <div>
             <h1>Home components</h1>
