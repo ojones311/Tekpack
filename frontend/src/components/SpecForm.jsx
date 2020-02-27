@@ -11,7 +11,6 @@ const SpecForm = (props) => {
         'Collar Length': '',
         'Arm width Left': '',
         'Arm width Right': '',
-
     })
     const [url, setUrl] = useState({
         form: null,
@@ -25,7 +24,7 @@ const SpecForm = (props) => {
         const getSpecs = async () => {
             try {
                 const { data: { payload }} = await axios.get(`/measurements/project/${projectId}`)
-                console.log(payload)
+                console.log(payload )
             } catch (err) {
                 console.log(err)
             }
