@@ -42,6 +42,25 @@ router.get('/project/:project_id', async(req, res, next) => {
         })
     }
 })
+
+router.delete('/project/:project_id', async (req,res,next) => {
+    const {project_id} = req.params
+    try{
+        const deleteMeasurement = await Measurements.deleteMeasurementByProjectId(project_id)
+        res.json({
+            payload: deleteMeasurement,
+            msg: 'Deleted measurement',
+            err: false
+        })
+    }catch(error){
+        console.log('error', error)
+        res.json({
+            payload: null,
+            msg: 'Failed to delete measurements',
+            err: true
+        })
+    }
+})
 //For this route we should create the measurment without the formData
 //We should add the formData on patch requests to the projects table 
 //Measurements table shouldnt stringify itself
