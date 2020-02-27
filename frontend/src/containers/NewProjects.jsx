@@ -36,9 +36,9 @@ const NewProjects = (props) => {
         // getDefaultTemplates()
     }, [])
 
-    const templateCards = (arr) => {
+    const templateCards = (arr, type) => {
         return arr.map(item => (
-            <div className="card template-card" key={item.template_id} onClick={() => postNewProject(item.template_id)}>
+            <div className="card template-card" key={item.template_id} onClick={() => postNewProject(item.template_id, type)}>
                 <div className="card-image">
                     <img src={item.image} alt={item.img_name} />
                 </div>
@@ -46,7 +46,6 @@ const NewProjects = (props) => {
             </div>
         ))
     }
-
 
 const postNewProject = async () => {
     const { img_name, image} = this.state;
@@ -61,10 +60,10 @@ const postNewProject = async () => {
 }
 
 
-    const postNewProject = async (templateId) => {
+   const postNewProject = async (templateId, type) => {
         console.log(`Template ID: ${templateId}`)
         // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
-        // const { data: {payload } } = await axios.post(`/something/${templateId}`)
+        // const { data: {payload } } = await axios.post(`/${type}/${templateId}`)
         // console.log(payload)
         // RETURN THE NEW PROJECT_ID
         // ON SUCCESS call function pushToSpecForm which is setup below
@@ -80,7 +79,7 @@ const postNewProject = async () => {
         <div>
             <h3 className='center'>Saved Templates</h3>
             <div className='project-templates'>
-                {templateCards(templates.userTemplates)}
+                {templateCards(templates.userTemplates, 'custom')}
             </div>
             {/* <form onSubmit={postNewProject}>
             <input>img_name</input>
@@ -91,7 +90,7 @@ const postNewProject = async () => {
             <hr />
             <h3 className='center'>Default Templates</h3>
             <div className='project-templates project-templates-default'>
-                {templateCards(templates.defaultTemplates)}
+                {templateCards(templates.defaultTemplates, 'default')}
             </div>
 
         </div >
