@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProjectList from './ProjectList'
+import { withRouter } from 'react-router-dom'
 
 const Overview = (props) => {
+    console.log(`Overview props: `, props)
     const [projects, setProjects] = useState([
         // { id: 1, name: 'T-Shirt' },
         // { id: 2, name: 'Jeans' },
@@ -14,6 +16,7 @@ const Overview = (props) => {
         const getAllProjects = async () => {
             try {
                 // GET PROJECTS BY USER ID
+                // const { data: { payload }} = await axios.get(`/projects/specs/${props.user_id}`)
                 const { data: { payload }} = await axios.get(`/projects/all`)
                 setProjects(payload)
             } catch (err) {
@@ -87,4 +90,4 @@ const Overview = (props) => {
     )
 }
 
-export default Overview
+export default withRouter(Overview)

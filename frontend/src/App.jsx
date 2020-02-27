@@ -13,18 +13,18 @@ import 'materialize-css'
 class App extends Component {
   state = {
     loggedIn: true,
-    currentRoute: '/home'
+    user_id: 1,
   }
 
   privateRoutes = () => (
     <Switch>
-      <Route path='/login' component={Login} />
-      <Route path='/signup' component={SignUp} />
-      <Route path='/projects' exact component={Projects} />
-      <Route path='/projects/new' component={NewProject} />
+      <Route path='/login' component={props => <Login state={this.state}/>} />
+      <Route path='/signup' component={props => <SignUp state={this.state} />} />
+      <Route path='/projects' exact component={props => <Projects state={this.state} />} />
+      <Route path='/projects/new' component={props => <NewProject state={this.state} />} />
       <Route path='/home' component={Home} />
       <Route path='/about' component={About} />
-      <Route path='/projects/:id' component={Projects} />
+      <Route path='/projects/:id' component={props => <Projects state={this.state} />} />
       <Redirect from='/' to='/home' />
     </Switch>
   )
@@ -43,7 +43,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar isLoggedIn={this.state.loggedIn} />
-          {/* <Login /> */}
           <div className='container'>
             {
               this.state.loggedIn ?
