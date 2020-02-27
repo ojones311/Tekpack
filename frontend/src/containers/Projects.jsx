@@ -1,17 +1,19 @@
 import React from 'react'
 // import { Switch, Link, Route } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Specifications from '../components/Specifications'
 import Overview from '../components/Overview'
 
 const Projects = (props) => {
+    console.log(`Projects props: `, props)
     return (
         <div>
             {/* <h1>Projects Components</h1> */}
             {
                 props.match.params.id ?
-                    <Specifications {...props} />
+                    <Specifications state={props} />
                     :
-                    <Overview {...props} />
+                    <Overview state={props} />
             }
 
             {/* <Switch>
@@ -22,4 +24,4 @@ const Projects = (props) => {
     )
 }
 
-export default Projects
+export default withRouter(Projects)

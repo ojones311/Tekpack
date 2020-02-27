@@ -1,5 +1,6 @@
 import React from 'react'
 import SpecForm from './SpecForm'
+import { withRouter } from 'react-router-dom'
 
 const Specifications = (props) => {
     const projectId = props.match.params.id;
@@ -13,4 +14,4 @@ const Specifications = (props) => {
     )
 }
 
-export default Specifications
+export default withRouter(Specifications)

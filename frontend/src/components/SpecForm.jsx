@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import { storage } from '../firebase/firebase'
 import UploadBar from './UploadBar'
 import UploadForm from './UploadForm'
 import axios from 'axios'
 
 const SpecForm = (props) => {
+    console.log(`SpecForm props: `, props)
     const [form, setForm] = useState({
         'Shirt Length': '25in',
         'Shirt Width': '14in',
@@ -109,4 +111,4 @@ const SpecForm = (props) => {
     )
 }
 
-export default SpecForm
+export default withRouter(SpecForm)
