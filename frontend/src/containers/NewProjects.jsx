@@ -35,9 +35,21 @@ const NewProjects = (props) => {
         ))
     }
 
-    
+const postNewProject = async () => {
+    const { img_name, image} = this.state;
+    try{
+        const res = await axios.post("http://localhost:3100/api/projects/new", {img_name, image})
+        console.log(res)
+        console.log(res.projects_id)
+        return res.projects_id
+    }catch(error) {
+        console.log(error)
+    }
+}
+
 
     return (
+
         <div>
             {/* <h1 className='center'>Project Templates</h1> */}
 
@@ -45,6 +57,12 @@ const NewProjects = (props) => {
             <div className='project-templates'>
                 {templateCards(templates)}
             </div>
+            {/* <form onSubmit={postNewProject}>
+            <input>img_name</input>
+            <input> img</input>
+            <button type="submit"></button>
+            </form> */}
+
             <hr />
             <h3 className='center'>Default Templates</h3>
             <div className='project-templates project-templates-default'>
