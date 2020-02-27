@@ -35,6 +35,8 @@ const NewProjects = (props) => {
         ))
     }
 
+    
+
     return (
         <div>
             {/* <h1 className='center'>Project Templates</h1> */}
