@@ -75,7 +75,6 @@ const postNewProject = async () => {
         props.history.push(`/projects/${projectId}`)
     }
 
-
     return (
 
         <div>
