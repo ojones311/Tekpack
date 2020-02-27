@@ -11,7 +11,7 @@ getAllProjects = async () => {
 
 getAllProjectsByUserId = async(users_id) => {
     try{
-        const myProjectsByUserId = await db.any('SELECT * FROM projects WHERE users_id= $1', [users_id])
+        const myProjectsByUserId = await db.one('SELECT * FROM projects WHERE users_id= $1', [users_id])
         return myProjectsByUserId
     }catch(error){
         console.log('mod error', error)

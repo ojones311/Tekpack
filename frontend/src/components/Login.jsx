@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
-import { Link } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -16,19 +15,7 @@ class Login extends Component {
         }
     }
 
-    // getAllUsers = async () =>{
-    //     try{
-    //         let res = await axios.get('http://localhost:3100/api/users/all')
-    //         console.log(res.data.payload)
-
-
-    //     }catch(err){
-    //         console.log(err)
-
-    //     }
-    // }
-
-    componentDidMount = async () => {
+    componentDidMount = () => {
         console.log("Log in component mounted")
         // this.getAllUsers()
 
@@ -46,27 +33,19 @@ class Login extends Component {
         e.preventDefault();
         let { email, userEmail, password, userPassWord } = this.state;
 
-        if ((userEmail === email) && (userPassWord === password)) {
+        if ((userEmail === email) && (userPassWord.toString() === password)) {
             console.log("login successfull")
+            this.props.history.push("/projects")
         } else {
             console.log("un-successful login")
         }
-
-        // try {
-        //     let res = await axios.get('http://localhost:3100/api/users/all')
-        //     console.log(res.data.payload)
-
-
-        // } catch (err) {
-        //     console.log(err)
-
-        // }
     }
 
 
 
     render() {
-        let { email, password } = this.state
+        let { email,userEmail,userPassWord, password } = this.state
+        console.log(`${userEmail}, ${userPassWord}`)
         return (
             <div className="Login-Page">
                 <img src={pic} alt="brokenLink" />
@@ -108,4 +87,4 @@ class Login extends Component {
 
 }
 
-export default Login
+export default withRouter(Login)
