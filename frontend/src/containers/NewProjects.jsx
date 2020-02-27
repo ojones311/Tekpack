@@ -47,18 +47,20 @@ const NewProjects = (props) => {
         ))
     }
 
-    const postNewProject = async () => {
-        const { img_name, image} = this.state;
-        try{
-            const res = await axios.post("http://localhost:3100/api/projects/new", {img_name, image})
-            console.log(res)
-            console.log(res.projects_id)
-            return res.projects_id
-        }catch(error) {
-            console.log(error)
-        }
+
+const postNewProject = async () => {
+    const { img_name, image} = this.state;
+    try{
+        const res = await axios.post("http://localhost:3100/api/projects/new", {img_name, image})
+        console.log(res)
+        console.log(res.projects_id)
+        return res.projects_id
+    }catch(error) {
+        console.log(error)
     }
-    
+}
+
+
     const postNewProject = async (templateId) => {
         console.log(`Template ID: ${templateId}`)
         // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
