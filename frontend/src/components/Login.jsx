@@ -29,12 +29,13 @@ class Login extends Component {
         })
     }
 
-    handleFormSubmit = async (e) => {
+    handleFormSubmit = (e) => {
         e.preventDefault();
         let { email, userEmail, password, userPassWord } = this.state;
 
         if ((userEmail === email) && (userPassWord.toString() === password)) {
             console.log("login successfull")
+            this.props.log()
             this.props.history.push("/projects")
         } else {
             console.log("un-successful login")
