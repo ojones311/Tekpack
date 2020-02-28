@@ -10,6 +10,7 @@ var templateRouter = require('./routes/template');
 var commentsRouter = require('./routes/comments')
 var projectsRouter = require('./routes/projects')
 var measurementsRouter = require('./routes/measurements')
+var defaultRouter = require('./routes/defaultTemplates')
 
 
 var app = express();
@@ -28,6 +29,7 @@ app.use('/api/templates', templateRouter);
 app.use('/api/comments', commentsRouter);
 app.use('/api/projects', projectsRouter);
 app.use('/api/measurements', measurementsRouter);
+app.use('/api/default/templates', defaultRouter)
 
 
 
