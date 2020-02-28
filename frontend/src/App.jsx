@@ -12,13 +12,13 @@ import 'materialize-css'
 
 class App extends Component {
   state = {
-    loggedIn: true,
+    loggedIn: false,
     user_id: 1,
   }
 
   privateRoutes = () => (
     <Switch>
-      <Route path='/login' component={props => <Login state={this.state}/>} />
+      <Route path='/login' component={props => <Login log={this.userLoggedIn}/>} />
       <Route path='/signup' component={props => <SignUp state={this.state} />} />
       <Route path='/projects' exact component={props => <Projects state={this.state} />} />
       <Route path='/projects/new' component={props => <NewProject state={this.state} />} />
@@ -37,6 +37,14 @@ class App extends Component {
       <Redirect from='/' to='/home' />
     </Switch>
   )
+
+  userLoggedIn = () =>{
+    this.setState({
+      loggedIn: true
+    })
+  }
+
+
 
   render() {
     return (

@@ -5,8 +5,7 @@ const Home = (props) => {
     // const route = props.match.path
     return (
         <div>
-            <h1>Home components</h1>
-            <Link to='/login'>Login</Link>
+            <Link to='/login'>Login</Link><br/>
             <Link to='/signup'>Signup</Link>
         </div>
     )
