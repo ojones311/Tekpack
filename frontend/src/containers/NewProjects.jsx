@@ -11,8 +11,10 @@ const NewProjects = (props) => {
     const [templates, setTemplates] = useState({
         userTemplates: [],
         defaultTemplates: [],
-        projectName: ''
+        projectName: '',
+        imgUrl: ''
     })
+    console.log(`NewProject props: `, props)
 
     useEffect(() => {
         const getTemplates = async () => {
@@ -31,9 +33,9 @@ const NewProjects = (props) => {
         getTemplates()
     }, [])
 
-    const templateCards = (arr) => {
+    const templateCards = (arr, type) => {
         return arr.map(item => (
-            <div className="card template-card" key={item.template_id} onClick={() => postNewProject(item.template_id, type, item.img_name)}>
+            <div className="card template-card" key={item.template_id} onClick={() => postNewProject(item.template_id, type, item.img_name, item.image)}>
                 <div className="card-image">
                     <img src={item.image} alt={item.img_name} />
                 </div>
@@ -42,16 +44,25 @@ const NewProjects = (props) => {
         ))
     }
 
-    const postNewProject = async (templateId, type, name) => {
-        console.log(`Template ID: ${templateId}`, `Type: ${type}`, `Name: ${name}`, `Project Name: ${templates.projectName}`)
-        const data = { templateId, type }
+    const postNewProject = async (templateId, type, name, url) => {
+        console.log(`Template ID: ${templateId}`, `Type: ${type}`, `Name: ${name}`, `Project Name: ${templates.projectName}`, `Image url:  ${url}`)
+        const data = { templateId, type, name, url }
         if (templates.projectName) {
             data.name = templates.projectName
         } else {
             data.name = name
         }
+
+        if (templates.imgUrl) {
+            data.url = templates.imgUrl
+        } else {
+            data.url = url
+        }
+
+        data.userId = props.state.user_id
+
         // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
-        const { data: {payload } } = await axios.post(`/new/${templateId}`, data)
+        const { data: {payload } } = await axios.post(`/projects/new`, { data })
         console.log(payload)
 
         // RETURN THE NEW PROJECT_ID
@@ -76,20 +87,27 @@ const NewProjects = (props) => {
                 placeholder='Project name'
             />
 
+            <input 
+                type="text" 
+                onChange={e => setTemplates({ ...templates, [e.target.name]: e.target.value })} 
+                name='imgUrl' 
+                placeholder='Image url...'
+            />
+
             <div className='project-templates'>
-                {templateCards(templates.userTemplates)}
+                {templateCards(templates.userTemplates, 'custom')}
             </div>
 
-            <form onSubmit={postNewProject}>
-            <input type="text" placeholder="img name"></input>
-            <input type="text" placeholder="img url"></input>
-            <button type="submit"> Submit </button>
-            </form> 
+            {/* <form onSubmit={postNewProject}>
+                <input type="text" placeholder="img name"></input>
+                <input type="text" placeholder="img url"></input>
+                <button type="submit"> Submit </button>
+            </form>  */}
 
             <hr />
             <h3 className='center'>Default Templates</h3>
             <div className='project-templates project-templates-default'>
-                {templateCards(templates.defaultTemplates)}
+                {templateCards(templates.defaultTemplates, 'default')}
             </div>
 
         </div >
