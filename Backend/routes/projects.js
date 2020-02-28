@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const projects = require('../models/Projects')
+const Measurements = require('../models/Measurements')
 
 router.get('/', (req, res, next) => {
     res.send('Route working')
@@ -79,7 +80,24 @@ router.post('/new', async (req, res, next) => {
     }
 })
 
-router.delete('')
+router.delete('/project/:project_id', async (req,res, next) => {
+    const {project_id} = req.params
+    try{
+        await Measurements.deleteMeasurementByProjectId(project_id)
+        const deleteProject = await projects.deleteProject(project_id)
+        res.json({
+            payload: deleteProject,
+            msg:'project deleted',
+            error: false
+        })
+    }catch(error){
+        res.status(500).json({
+            payload: null,
+            msg: error,
+            err: true
+        })
+    }
+})
 
 
 module.exports = router;

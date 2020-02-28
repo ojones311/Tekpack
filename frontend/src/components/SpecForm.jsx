@@ -4,15 +4,16 @@ import UploadBar from './UploadBar'
 import UploadForm from './UploadForm'
 import axios from 'axios'
 
-const SpecForm = (props) => {
-    const [form, setForm] = useState({
-        'Shirt Length': '25in',
-        'Shirt Width': '14in',
-        'Collar Length': '',
-        'Arm width Left': '',
-        'Arm width Right': '',
+const defaultForm = {
+    'Shirt Length': '',
+    'Shirt Width': '',
+    'Collar Length': '',
+    'Arm width Left': '',
+    'Arm width Right': '',
+}
 
-    })
+const SpecForm = (props) => {
+    const [form, setForm] = useState(defaultForm)
     const [url, setUrl] = useState({
         form: null,
         url: 'https://help.printsome.com/wp-content/uploads/2019/10/T-SHIRT-CHART-SIZES.png',
@@ -47,6 +48,7 @@ const SpecForm = (props) => {
                             value={form[key]}
                             className='formInput'
                             onChange={e => setForm({ ...form, [e.target.name]: e.target.value })}
+
                         />
                     </label>
                 ))}
@@ -84,8 +86,8 @@ const SpecForm = (props) => {
             }
         )
     }
-
     console.log(url)
+    console.log({form})
 
     const designImg = (e) => (
         <div className='design-img col s6'>
@@ -96,9 +98,16 @@ const SpecForm = (props) => {
             <UploadForm fileChange={fileChange} />
 
             <button className='btn' onClick={uploadImage}>Upload</button>
+            
         </div>
     )
-
+    // const handleSubmit = (e) => {
+    //     setForm({
+    //         ...form,
+    //         [e.target.value]: e.target.value
+    //     })
+    //     console.log('form submitted')
+    // }
     return (
         <div>
             <h1>Spec for {projectId}</h1>
@@ -106,6 +115,7 @@ const SpecForm = (props) => {
                 {specs()}
                 {designImg()}
             </div>
+            <button className='btn' onClick={handleSubmit}>Submit</button>
         </div>
     )
 }

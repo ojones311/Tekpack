@@ -42,24 +42,17 @@ createNewProject = async(proj) => {
 
 editProject = async () => {
     try{
-
+       
     }catch(error){
         console.log('mod error', error)
     }
 }
-deleteProject = async () => {
+deleteProject = async (project_id) => {
     try{
-        let description = req.params.description
-        let date_made = req.params.date_made
-        let created_by = req.params.created_by
-        let quantity = req.params.quantity
-        let color = req.params.color
-        let img_url = req.params.img_url
-
         let delQuery = 
         `DELETE from projects 
-        WHERE description = $1 AND date_made = $2 AND created_by = $3 AND quantity = $4 AND color = $5 AND img_url = $6`
-        await db.none(delQuery, [description, date_made, created_by, quantity, color, img_url])
+        WHERE projects_id = $1`
+        await db.none(delQuery, [project_id])
     }catch(error){
         console.log('mod error', error)
     }

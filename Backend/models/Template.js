@@ -41,7 +41,7 @@ getAll = async () => {
 }
 
 
-// changeTemplate = async () => {
+// editTemplate = async () => {
 
 // }
 
