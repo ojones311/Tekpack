@@ -5,7 +5,10 @@ const Home = (props) => {
     // const route = props.match.path
     return (
         <div>
-            <Link to='/login'>Login</Link><br/>
+            <Link to='/login'>Login</Link>
+            
+            <br/>
+            
             <Link to='/signup'>Signup</Link>
         </div>
     )
