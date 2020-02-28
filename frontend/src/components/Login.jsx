@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -81,6 +81,8 @@ class Login extends Component {
                     {/* <Button variant="outlined" color="primary">Sign In</Button><br /> */}
                     {/* <Button variant="outlined" color="primary">Sign up</Button> */}
                 </form>
+                
+                <Link to='/signup'><button>Sign Up</button></Link>
 
             </div>
         )
