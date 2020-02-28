@@ -19,29 +19,20 @@ const NewProjects = (props) => {
             try {
                 // GET TEMPLATES BY USER ID
                 // const { data: { payload }} = await axios.get(`/templates/${props.state.userId}`)
-                const { data: { payload } } = await axios.get(`/templates/all`)
-                console.log("saved templates",payload)
-                setTemplates({ ...templates, userTemplates: payload })
+                const userTemplates = await axios.get(`/templates/all`)
+                const defaultTemplates = await axios.get(`/default/templates/all`)
+                console.log(`Templates: `, userTemplates, defaultTemplates)
+                setTemplates({ ...templates, userTemplates: userTemplates.data.payload, defaultTemplates: defaultTemplates.data.payload })
             } catch (err) {
                 console.log(err)
             }
         }
-        const getDefaultTemplates = async () => {
-            try {
-                const { data: { payload } } = await axios.get(`/default/templates/all`)
-                console.log("default templates",payload)
-                setTemplates({ ...templates, defaultTemplates: payload })
-            }catch (err) {
-                console.log(err)
-            }
-        }
+
         getTemplates()
-        getDefaultTemplates()
     }, [])
 
     const templateCards = (arr) => {
         return arr.map(item => (
-
             <div className="card template-card" key={item.template_id} onClick={() => postNewProject(item.template_id, type, item.img_name)}>
                 <div className="card-image">
                     <img src={item.image} alt={item.img_name} />
@@ -50,7 +41,6 @@ const NewProjects = (props) => {
             </div>
         ))
     }
-
 
     const postNewProject = async (templateId, type, name) => {
         console.log(`Template ID: ${templateId}`, `Type: ${type}`, `Name: ${name}`, `Project Name: ${templates.projectName}`)
@@ -61,14 +51,9 @@ const NewProjects = (props) => {
             data.name = name
         }
         // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
-        // const { data: {payload } } = await axios.post(`/projects/new`, data )
-        // console.log(payload)
-}
-    const postNewProject = async (templateId) => {
-        console.log(`Template ID: ${templateId}`)
-        // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
-        const { data: {payload } } = await axios.post(`/new/${templateId}`)
+        const { data: {payload } } = await axios.post(`/new/${templateId}`, data)
         console.log(payload)
+
         // RETURN THE NEW PROJECT_ID
         // ON SUCCESS call function pushToSpecForm which is setup below
         // pushToSpecForm(payload.projectId)
@@ -94,7 +79,6 @@ const NewProjects = (props) => {
             <div className='project-templates'>
                 {templateCards(templates.userTemplates)}
             </div>
-
 
             <form onSubmit={postNewProject}>
             <input type="text" placeholder="img name"></input>
