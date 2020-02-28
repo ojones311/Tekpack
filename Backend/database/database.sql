@@ -76,7 +76,11 @@ CREATE TABLE measurement
     projects_id INT REFERENCES projects(projects_id)
 );
 
-
+CREATE TABLE defaultTemplates (
+deftemplate_id SERIAL PRIMARY KEY, 
+img_name VARCHAR,
+ image VARCHAR
+);
 
 INSERT INTO users
     (name, email, number, password)
@@ -89,12 +93,12 @@ VALUES
 
 
 INSERT INTO template
-    (image, img_name)
+    (image, img_name, users_id)
 VALUES
-    ('https://i.pinimg.com/originals/63/c2/ee/63c2ee0ce6a9781832abb6257a5a2f6c.jpg', 'T-shirt'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQg9nIlbLHdo8ncp26K_zGQCrp-BI0OtabxriquAytsY-u_G4Wq', 'hoodie'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQmNVYh8cirBNxSHCS99seydVuhfc0WPZRKAJHqBN__GyXNatK', 'jeans'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCPm4SynnGYp_s957p0ZRGjES2y8nGMP5UawpOQJuoSixKd_s5', 'Dress');
+    ('https://i.pinimg.com/originals/63/c2/ee/63c2ee0ce6a9781832abb6257a5a2f6c.jpg', 'T-shirt', 1),
+    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQg9nIlbLHdo8ncp26K_zGQCrp-BI0OtabxriquAytsY-u_G4Wq', 'hoodie', 3),
+    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQmNVYh8cirBNxSHCS99seydVuhfc0WPZRKAJHqBN__GyXNatK', 'jeans', 1),
+    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCPm4SynnGYp_s957p0ZRGjES2y8nGMP5UawpOQJuoSixKd_s5', 'Dress', 2);
 
 INSERT INTO projects
     ( description, date_made, created_by, quantity, color, img_url, template_id, users_id, form_data)
@@ -123,4 +127,10 @@ VALUES
     (5, 9, 10, 3, 4),
     (10, 3, 5, 14, 5);
 
+INSERT INTO defaultTemplates (deftemplate_id, img_name, image)
+VALUES
+(1,  'T-shirt',  'https://pluspng.com/img-png/tshirt-png-outline-blank-t-shirt-outline-1663530-1421.jpg'),
+(2, 'Hoodie',  'https://i.ya-webdesign.com/images/hoodie-template-png-13.png' ),
+(3,'Jeans', 'https://i.pinimg.com/originals/7e/e7/81/7ee78144307504c7de8c4b50255a0ca8.png'),
+(4, 'Socks',  'https://media.istockphoto.com/vectors/sock-template-vector-id512011001?k=6&m=512011001&s=612x612&w=0&h=tNkOx3mG7dRj5X1rKB46mYu77ehGHtH0rsNA1GieDmk=');
 
