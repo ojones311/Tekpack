@@ -93,12 +93,12 @@ VALUES
 
 
 INSERT INTO template
-    (image, img_name)
+    (image, img_name, users_id)
 VALUES
-    ('https://i.pinimg.com/originals/63/c2/ee/63c2ee0ce6a9781832abb6257a5a2f6c.jpg', 'T-shirt'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQg9nIlbLHdo8ncp26K_zGQCrp-BI0OtabxriquAytsY-u_G4Wq', 'hoodie'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQmNVYh8cirBNxSHCS99seydVuhfc0WPZRKAJHqBN__GyXNatK', 'jeans'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCPm4SynnGYp_s957p0ZRGjES2y8nGMP5UawpOQJuoSixKd_s5', 'Dress');
+    ('https://i.pinimg.com/originals/63/c2/ee/63c2ee0ce6a9781832abb6257a5a2f6c.jpg', 'T-shirt', 1),
+    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQg9nIlbLHdo8ncp26K_zGQCrp-BI0OtabxriquAytsY-u_G4Wq', 'hoodie', 3),
+    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQmNVYh8cirBNxSHCS99seydVuhfc0WPZRKAJHqBN__GyXNatK', 'jeans', 1),
+    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCPm4SynnGYp_s957p0ZRGjES2y8nGMP5UawpOQJuoSixKd_s5', 'Dress', 2);
 
 INSERT INTO projects
     ( description, date_made, created_by, quantity, color, img_url, template_id, users_id, form_data)
