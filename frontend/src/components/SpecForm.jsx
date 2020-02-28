@@ -16,6 +16,7 @@ const SpecForm = (props) => {
         'Arm width Left': '',
         'Arm width Right': '',
     })
+
     const [url, setUrl] = useState({
         form: null,
         url: 'https://help.printsome.com/wp-content/uploads/2019/10/T-SHIRT-CHART-SIZES.png',
@@ -50,6 +51,7 @@ const SpecForm = (props) => {
                             value={form[key]}
                             className='formInput'
                             onChange={e => setForm({ ...form, [e.target.name]: e.target.value })}
+
                         />
                     </label>
                 ))}
@@ -95,13 +97,8 @@ const SpecForm = (props) => {
         )
     }
 
-    const submitSpecForm = async () => {
-        // Check if all fields are filled if not display error and return
-        // Else proceed to posting it to the backend
-        // On success push them/display success component which shows url link, excel download link, and QR code to url link
-    }
-
     console.log(url)
+    console.log({form})
 
     const designImg = (e) => (
         <div className='design-img col s6'>
@@ -112,9 +109,16 @@ const SpecForm = (props) => {
             <UploadForm fileChange={fileChange} error={url.error} />
 
             <button className='btn' onClick={uploadImage}>Upload</button>
+            
         </div>
     )
-
+    // const handleSubmit = (e) => {
+    //     setForm({
+    //         ...form,
+    //         [e.target.value]: e.target.value
+    //     })
+    //     console.log('form submitted')
+    // }
     return (
         <div>
             <h1>Spec for {projectId}</h1>
@@ -122,6 +126,7 @@ const SpecForm = (props) => {
                 {specs()}
                 {designImg()}
             </div>
+            <button className='btn' onClick={handleSubmit}>Submit</button>
         </div>
     )
 }
