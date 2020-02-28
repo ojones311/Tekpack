@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 
 const NewProjects = (props) => {
@@ -67,7 +68,7 @@ const NewProjects = (props) => {
 
         // RETURN THE NEW PROJECT_ID
         // ON SUCCESS call function pushToSpecForm which is setup below
-        // pushToSpecForm(payload.projectId)
+        pushToSpecForm(payload[0].projects_id)
     }
 
     const pushToSpecForm = (projectId) => {
@@ -114,4 +115,4 @@ const NewProjects = (props) => {
     )
 }
 
-export default NewProjects
+export default withRouter(NewProjects)
