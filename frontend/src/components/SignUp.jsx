@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 
 
@@ -49,7 +49,9 @@ class SignUp extends Component {
                         name="password"
                         value={password}
                         onChange={this.handleChange}
-                        required /><br/>
+                        required />
+                    
+                    <br/>
 
                     <Button variant="outlined" color="secondary">Sign In</Button><br/>
                     <Button variant="outlined" color="secondary">Sign up</Button>
@@ -60,4 +62,4 @@ class SignUp extends Component {
     }
 
 }
-export default SignUp
+export default withRouter(SignUp)
