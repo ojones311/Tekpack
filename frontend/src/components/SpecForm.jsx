@@ -6,7 +6,9 @@ import UploadForm from './UploadForm'
 import axios from 'axios'
 
 const SpecForm = (props) => {
+    // const projectId = props.match.params.id;
     console.log(`SpecForm props: `, props)
+    // console.log(`SpecForm project id: `, projectId)
     const [form, setForm] = useState({
         'Shirt Length': '25in',
         'Shirt Width': '14in',
