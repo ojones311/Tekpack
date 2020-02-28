@@ -1,9 +1,3 @@
-/* .App {
-  text-align: center;
-  height: 100%;
-  top: 0;  
-} */
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -15,27 +9,10 @@
   color: white;
 }
 
-/* .collection-item:hover {
-  color: rgb(240, 83, 83);
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 0 1px 1px black; 
-  background: rgb(247, 247, 247);
-}
-*/
-/* .secondary-content {
-  padding: 10px;
-} */
 .material-icons {
   margin: 0 7px;
   transition: all .1s ease-in;
 }
-
-/* .material-icons:hover {
-  transform: scale(1.1);
-  border-bottom: .5px solid rgb(171, 171, 171);
-  cursor: pointer;
-} */
 
 .project-name:hover {
   color: rgb(240, 83, 83);
@@ -56,9 +33,7 @@
   padding: 0;
   border-radius: 0% 25% 25% 25%;
   z-index: 2;
-  /* align-items: space-between; */
 }
-
 .hamburger > li {
   padding: 0;
   margin: 0;
@@ -78,17 +53,11 @@
 .hamburger-item:hover, .hamburger-item .material-icons:hover {
   background: none;
   color: rgb(0, 0, 0);
-
 }
 .hamburger-item:hover {
   transform: scale(1.1);
 }
-/* .hamburger-item>li {
-  width: 100%;
-} */
-/* .hamburger-item >li:hover {
-  background: rgb(252, 135, 135);
-} */
+
 .formField {
   width: 40%;
   margin: 0;
@@ -97,16 +66,21 @@
 .formInput {
   width: 200px;
 }
+
+img {
+  width: 100%;
+}
 .design-img {
   position: relative;
   width: 40%;
 }
-img {
-  width: 100%;
+.design-img-display {
+  margin: 10px 0;
+  border: 1px solid black;
 }
+
 .project-overview .material-icons:hover {
   transform: scale(1.15);
-  /* border-bottom: .5px solid rgb(171, 171, 171); */
   cursor: pointer;
 }
 .project-new {
@@ -115,14 +89,11 @@ img {
 .project-new:hover {
   transform: scale(1.04);
 }
-.design-img-display {
-  margin: 10px 0;
-  border: 1px solid black;
-}
 .project-templates {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
 .template-card {
   margin: 5px;
   transition: all .2s ease-in;
@@ -131,11 +102,10 @@ img {
   box-shadow: 0px 0px 5px 2px rgb(133, 132, 132);
   transform: scale(1.019);
 }
+
 .card-title {
-  /* width: 200px; */
   position: relative;
   bottom: 0;
-  /* left: calc(50% - 100px); */
   display: flex;
   justify-content: center;
   color: black;
