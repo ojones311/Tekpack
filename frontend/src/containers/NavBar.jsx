@@ -71,6 +71,7 @@ const NavBar = (props) => {
                         <>
                             <li className={route.slice(0, 9) === '/projects' ? 'active' : ''}><NavLink to='/projects'>Projects</NavLink></li>
                             <li className={route.slice(0, 6) === '/about' ? 'active' : ''}><NavLink to='/about'>About</NavLink></li>
+                            <li><button onClick ={props.signout}>Sign Out</button></li>
                         </>
                         : null
                     }
