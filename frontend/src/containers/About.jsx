@@ -5,19 +5,16 @@ const About = () => {
     return (
         <div>
             <h1>About</h1>
-            <p>What if I told you to make 2,000 gallons of water to make the jeans you are wearing right now, you wouldn’t believe it.
-                Nobody ever really thinks what it took to make a piece of clothing we just like it and buy it. </p>
-
-            <p>
-                One problem in the fashion world is that textile dying is the second largest polluter of
-                water globally and 73% of these textiles end up in landfills or burned because of sample exchanges between designer
-                 and factory supplier. 
+            <p>It takes 2,000 gallons of water to make the jeans you are wearing right now, you wouldn’t believe it.
+                Nobody ever really thinks what it took to make a piece of clothing we just like it and buy it.
+                That is one of the problems in the fashion world, textile dyeing it's the second largest polluter of
+                water globally and 73% of theset extiles end up in landfills or burned because they are unusable.
+                 Miscommunication between designer and factory supplier also contribute to textile waste.
                  <br/>
-                 Here's why:
-                <or>
+                 Some issues they face:
+                <or>    
                     <li>Design and specification inaccuracy</li>
                     <li>Lost samples and specification sheets in mail and emails</li>
-                    <li>Miscommunications between the two parties</li>
                     <li>Hard to manage hard copy files for each product</li>
                 </or>
             </p>
@@ -32,7 +29,7 @@ const About = () => {
     
             </p>
             <p>
-                For Future features
+                For Future Features:
                 <or>
                     <li>live changes</li>
                     <li>Designers to be able to send factories their url link. The supplier will have to sign up under the supplier account to
@@ -41,7 +38,8 @@ const About = () => {
                     <li> Designers sketches will be 3D and dynamic where once a measurement is inputed the image would display the input in real time.</li>
                     <li>Add an Export option where suppliers are able to export the spec sheet as a PDF or just the measurements as an excel
                         sheet for printing purposes.</li>
-                    <li>QR Code to get product specs instantly</li>
+                    <li>Be able to leave comment on projects</li>
+                    <li>Save measurements under specific projects</li>
                 </or>
             </p>
 
