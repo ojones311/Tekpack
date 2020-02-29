@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
 import { withRouter, Link } from 'react-router-dom'
-import axios from 'axios'
 
 
 class Login extends Component {
@@ -35,7 +34,7 @@ class Login extends Component {
 
         if ((userEmail === email) && (userPassWord.toString() === password)) {
             console.log("login successfull")
-            this.props.log()
+            this.props.log(true)
             this.props.history.push("/projects")
         } else {
             console.log("un-successful login")
@@ -45,7 +44,7 @@ class Login extends Component {
 
 
     render() {
-        let { email,userEmail,userPassWord, password } = this.state
+        let { email, userEmail, userPassWord, password } = this.state
         console.log(`${userEmail}, ${userPassWord}`)
         return (
             <div className="Login-Page">
@@ -76,13 +75,12 @@ class Login extends Component {
                     <button class="btn waves-effect waves-light" type="submit" name="action">Log In
                     <i class="material-icons right">send</i>
                     </button>
-
-
-                    {/* <Button variant="outlined" color="primary">Sign In</Button><br /> */}
-                    {/* <Button variant="outlined" color="primary">Sign up</Button> */}
                 </form>
-                
-                <Link to='/signup'><button>Sign Up</button></Link>
+
+                <Link to='/signup'>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
+                    {/* <i class="material-icons right">send</i> */}
+                    </button></Link>
 
             </div>
         )
