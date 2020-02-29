@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import pic from '../assets/fashion-runwayimg.jpg'
+// import pic from '../assets/fashion-runwayimg.jpg'
 import { withRouter, Link } from 'react-router-dom'
 
 
@@ -48,8 +48,8 @@ class Login extends Component {
         console.log(`${userEmail}, ${userPassWord}`)
         return (
             <div className="Login-Page">
-                <img src={pic} alt="brokenLink" />
-                <h1>Log In Component</h1>
+                {/* <img src={pic} alt="brokenLink" /> */}
+                <h1>Welcome to Tekpack </h1>
 
                 <form onSubmit={this.handleFormSubmit}>
 
