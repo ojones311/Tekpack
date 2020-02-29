@@ -112,13 +112,7 @@ const SpecForm = (props) => {
             
         </div>
     )
-    // const handleSubmit = (e) => {
-    //     setForm({
-    //         ...form,
-    //         [e.target.value]: e.target.value
-    //     })
-    //     console.log('form submitted')
-    // }
+    
     return (
         <div>
             <h1>Spec for {projectId}</h1>
@@ -126,7 +120,7 @@ const SpecForm = (props) => {
                 {specs()}
                 {designImg()}
             </div>
-            <button className='btn' onClick={handleSubmit}>Submit</button>
+            
         </div>
     )
 }

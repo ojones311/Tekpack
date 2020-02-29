@@ -36,11 +36,12 @@ const Overview = (props) => {
         // Make Request to backend to delete a project
         // If success show new list
         // If error display error
-        // try {
-        //     const data = await  axios.post(`/projects/delete/${id}`)
-        // } catch (err) {
-        //  console.log)err
-        // }
+        try {
+            const data = await axios.delete(`http://localhost:3100/api/projects/project/${id}`)
+            console.log(data)
+        } catch (err) {
+         console.log('err',err)
+        }
         setProjects(newList)
     }
 
