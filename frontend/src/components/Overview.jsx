@@ -17,6 +17,8 @@ const Overview = (props) => {
             try {
                 // GET PROJECTS BY USER ID
                 // const { data: { payload }} = await axios.get(`/projects/specs/${props.user_id}`)
+                // console.log(payload)
+                // GET ALL Projects
                 const { data: { payload }} = await axios.get(`/projects/all`)
                 setProjects(payload)
             } catch (err) {
