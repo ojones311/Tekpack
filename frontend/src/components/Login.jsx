@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import pic from '../assets/download.png'
+import pic from '../assets/fashion-runwayimg.jpg'
 import { withRouter, Link } from 'react-router-dom'
 
 
