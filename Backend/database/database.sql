@@ -27,10 +27,6 @@ CREATE TABLE projects
 (
     projects_id SERIAL PRIMARY KEY,
     description VARCHAR,
-    date_made DATE,
-    created_by VARCHAR,
-    quantity INT,
-    color VARCHAR,
     img_url VARCHAR,
     template_id INT REFERENCES template(template_id),
     users_id INT REFERENCES users(users_id),
@@ -101,13 +97,13 @@ VALUES
     ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCPm4SynnGYp_s957p0ZRGjES2y8nGMP5UawpOQJuoSixKd_s5', 'Dress', 2);
 
 INSERT INTO projects
-    ( description, date_made, created_by, quantity, color, img_url, template_id, users_id, form_data)
+    ( description, img_url, users_id, form_data)
 VALUES
-    ('t-shirt', '2020-02-23', 'peach', 10, 'blue', '' , 1, 1, ''),
-    ('jeans', '2020-02-23', 'steve', 5, 'black', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',NULL,2, '' ),
-    ( 'socks', '2020-02-25', 'frank', 80, 'yellow', '', NULL , 4 ,''),
-    ('t-shirt', '2020-02-02', 'rose', 5, 'white with blue stripes', '', NULL, 4, ''),
-    ('hoodie', '2020-02-23', 'rose', 10, 'purple', '', NULL, 3,'');
+    ('t-shirt', '' , 1, ''),
+    ('jeans', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',2, '' ),
+    ( 'socks', '',  4 ,''),
+    ('t-shirt', '', 4, ''),
+    ('hoodie', '',  3,'');
 
 INSERT INTO comments
     (comment, commentors_email)

@@ -15,7 +15,7 @@ const NewProjects = (props) => {
         projectName: '',
         imgUrl: ''
     })
-    console.log(`NewProject props: `, props)
+    // console.log(`NewProject props: `, props)
 
     useEffect(() => {
         const getTemplates = async () => {
@@ -24,7 +24,7 @@ const NewProjects = (props) => {
                 // const { data: { payload }} = await axios.get(`/templates/${props.state.userId}`)
                 const userTemplates = await axios.get(`/templates/all`)
                 const defaultTemplates = await axios.get(`/default/templates/all`)
-                console.log(`Templates: `, userTemplates, defaultTemplates)
+                // console.log(`Templates: `, userTemplates, defaultTemplates)
                 setTemplates({ ...templates, userTemplates: userTemplates.data.payload, defaultTemplates: defaultTemplates.data.payload })
             } catch (err) {
                 console.log(err)
@@ -45,15 +45,14 @@ const NewProjects = (props) => {
         ))
     }
 
-    const postNewProject = async (templateId, type, name, url) => {
-        console.log(`Template ID: ${templateId}`, `Type: ${type}`, `Name: ${name}`, `Project Name: ${templates.projectName}`, `Image url:  ${url}`)
-        const data = { templateId, type, name, url }
+    const postNewProject = async (template_id, type, description, url) => {
+        console.log(`Template ID: ${template_id}`, `Type: ${type}`, `Name: ${description}`, `Project Name: ${templates.projectName}`, `Image url:  ${url}`)
+        const data = { template_id, type, description, url }
         if (templates.projectName) {
-            data.name = templates.projectName
+            data.description = templates.projectName
         } else {
-            data.name = name
+            data.description = description
         }
-
         if (templates.imgUrl) {
             data.url = templates.imgUrl
         } else {
@@ -64,10 +63,11 @@ const NewProjects = (props) => {
 
         // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
         const { data: {payload } } = await axios.post(`/projects/new`, { data })
-        console.log(payload)
+        console.log("payload",payload)
 
         // RETURN THE NEW PROJECT_ID
         // ON SUCCESS call function pushToSpecForm which is setup below
+
         pushToSpecForm(payload[0].projects_id)
     }
 
@@ -75,7 +75,7 @@ const NewProjects = (props) => {
         props.history.push(`/projects/${projectId}`)
     }
 
-    console.log(templates)
+    // console.log(templates)
 
     return (
         <div>

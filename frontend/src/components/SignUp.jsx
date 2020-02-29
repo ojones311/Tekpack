@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
 import { Link, withRouter } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+// import { Button } from '@material-ui/core'
 
 
 
@@ -53,8 +53,8 @@ class SignUp extends Component {
                     
                     <br/>
 
-                    <Button variant="outlined" color="secondary">Sign In</Button><br/>
-                    <Button variant="outlined" color="secondary">Sign up</Button>
+                    {/* <Button variant="outlined" color="secondary">Sign In</Button><br/> */}
+                    {/* <Button variant="outlined" color="secondary">Sign up</Button> */}
                 </form>
 
             </div>
