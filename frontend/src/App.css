@@ -9,6 +9,10 @@
   color: white;
 }
 
+.white-text {
+  color: white;
+}
+
 .material-icons {
   margin: 0 7px;
   transition: all .1s ease-in;

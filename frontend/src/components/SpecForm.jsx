@@ -112,6 +112,27 @@ const SpecForm = (props) => {
         </div>
     )
     //Sends a request to my measurements route posting new specs
+
+    const handleSubmit = async () => {
+        console.log('button clicked')
+        console.log(form)
+        const {measurement_id, hps, cf, cb, ss, projects_id} = form
+        try{
+            await axios.post('http://localhost:3100/api/measurements/form', {
+                measurement_id: measurement_id,
+                hps: hps,
+                cf: cf,
+                cb: cb,
+                ss: ss,
+                projects_id: projects_id
+        })
+        console.log('Form submitted')
+        }catch(error){
+            console.log('err', error)
+        } 
+    }
+
+
     // const handleSubmit = async () => {
     //     console.log('button clicked')
     //     console.log(form['Shirt Length'])
@@ -127,9 +148,11 @@ const SpecForm = (props) => {
     //     } 
 
     // }
+
     return (
         <div>
-            <h1>Spec for {projectId}</h1>
+            <h1 className='center-align'>Specifications</h1>
+
             <div className='row'>
                 {specs()}
                 {designImg()}
