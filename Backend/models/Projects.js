@@ -29,11 +29,11 @@ getProjectByProjectId = async(projects_id) => {
 }
 
 createNewProject = async(proj) => {
-    const {description,  img_url, userId, form_data} = proj
+    const {description,  img_url, users_id, form_data} = proj
     try{
-        const insertQuery = `INSERT INTO projects (description, img_url, user_id, form_data) 
+        const insertQuery = `INSERT INTO projects (description, img_url, users_id, form_data) 
         VALUES ($1, $2, $3, $4) RETURNING *`
-        let response = await db.any(insertQuery, [description, img_url, userId, form_data])
+        let response = await db.any(insertQuery, [description, img_url, users_id, form_data])
         return response;
     }catch(error){
         console.log('mod error', error)

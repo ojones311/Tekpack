@@ -59,7 +59,7 @@ const NewProjects = (props) => {
             data.url = url
         }
 
-        data.userId = props.state.user_id
+        data.users_id = props.state.user_id
 
         // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
         const { data: {payload } } = await axios.post(`/projects/new`, { data })
