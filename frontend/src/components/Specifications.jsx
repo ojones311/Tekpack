@@ -18,8 +18,8 @@ const Specifications = (props) => {
 
     return (
         <div>
-            <h1>Specifications</h1>
-            <p>Project id: {projectId}</p>
+            {/* <h1>Specifications</h1> */}
+            {/* <p>Project id: {projectId}</p> */}
             <SpecForm projectId={projectId} state={props.state}/>
         </div>
     )

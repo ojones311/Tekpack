@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import pic from '../assets/download.png'
+import pic from '../assets/fashion-runwayimg.jpg'
 import { withRouter, Link } from 'react-router-dom'
-import axios from 'axios'
 
 
 class Login extends Component {
@@ -10,16 +9,14 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            userEmail: 'OJones@project.com',
-            userPassWord: 1234567890
+            userEmail: 'owen@pursuit.org',
+            userPassWord: 1234
         }
     }
 
     componentDidMount = () => {
         console.log("Log in component mounted")
         // this.getAllUsers()
-
-
     }
 
     handleChange = (e) => {
@@ -35,7 +32,7 @@ class Login extends Component {
 
         if ((userEmail === email) && (userPassWord.toString() === password)) {
             console.log("login successfull")
-            this.props.log()
+            this.props.log(true)
             this.props.history.push("/projects")
         } else {
             console.log("un-successful login")
@@ -45,12 +42,12 @@ class Login extends Component {
 
 
     render() {
-        let { email,userEmail,userPassWord, password } = this.state
+        let { email, userEmail, userPassWord, password } = this.state
         console.log(`${userEmail}, ${userPassWord}`)
         return (
             <div className="Login-Page">
-                <img src={pic} alt="brokenLink" />
-                <h1>Log In Component</h1>
+                {/* <img src={pic} alt="brokenLink" /> */}
+                <h1>Log In</h1>
 
                 <form onSubmit={this.handleFormSubmit}>
 
@@ -64,7 +61,7 @@ class Login extends Component {
 
 
                     <input
-                        type="text"
+                        type="password"
                         placeholder="password"
                         name="password"
                         value={password}
@@ -73,16 +70,17 @@ class Login extends Component {
 
                     <br />
 
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Log In
-                    <i class="material-icons right">send</i>
+                    <button class="btn waves-effect waves-light red" type="submit" name="action">Log In
+                    {/* <i class="material-icons right">send</i> */}
                     </button>
-
-
-                    {/* <Button variant="outlined" color="primary">Sign In</Button><br /> */}
-                    {/* <Button variant="outlined" color="primary">Sign up</Button> */}
                 </form>
-                
-                <Link to='/signup'><button>Sign Up</button></Link>
+
+                <br />
+
+                <Link to='/signup'>
+                    <button class="btn waves-effect waves-light blue" type="submit" name="action">Sign Up
+                    {/* <i class="material-icons right">send</i> */}
+                    </button></Link>
 
             </div>
         )

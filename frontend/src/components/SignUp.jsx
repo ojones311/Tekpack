@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import pic from '../assets/download.png'
 import { Link, withRouter } from 'react-router-dom'
-import { Button } from '@material-ui/core'
 
 
 
@@ -25,14 +24,20 @@ class SignUp extends Component {
         })
     }
 
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        this.props.log(true)
+        this.props.history.push("/projects")
+    }
+
     render() {
         let { email, password } = this.state
         return (
             <div className="Login-Page">
-                <img src={pic} alt="brokenLink" />
-                <h1>Sign Up Component</h1>
+                {/* <img src={pic} alt="brokenLink" /> */}
+                <h1>Sign Up</h1>
 
-                <form>
+                <form onSubmit = {this.handleFormSubmit}>
 
                     <input
                         type="text"
@@ -40,8 +45,8 @@ class SignUp extends Component {
                         name="email"
                         value={email}
                         onChange={this.handleChange}
-                        required />
-
+                        required 
+                    />
 
                     <input
                         type="text"
@@ -49,13 +54,23 @@ class SignUp extends Component {
                         name="password"
                         value={password}
                         onChange={this.handleChange}
-                        required />
-                    
-                    <br/>
+                        required 
+                    />
 
-                    <Button variant="outlined" color="secondary">Sign In</Button><br/>
-                    <Button variant="outlined" color="secondary">Sign up</Button>
+                    <br />
+
+
+                    <button class="btn waves-effect waves-light red" type="submit" name="action">Sign Up
+                    {/* <i class="material-icons right">send</i> */}
+                    </button>
                 </form>
+
+                <br />
+
+                <Link to='/login'>
+                    <button class="btn waves-effect waves-light blue" type="submit" name="action">Log In
+                    {/* <i class="material-icons right">send</i> */}
+                    </button></Link>
 
             </div>
         )
