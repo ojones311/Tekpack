@@ -53,7 +53,7 @@ const Overview = (props) => {
 
     return (
         <div className='project-overview'>
-            <h1 className='center'>Overview component</h1>
+            {/* <h1 className='center'>Overview component</h1> */}
 
             <div className='row valign-wrapper'>
                 <div className="input-field col s6 pull-s1">

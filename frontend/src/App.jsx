@@ -12,7 +12,7 @@ import 'materialize-css'
 
 class App extends Component {
   state = {
-    loggedIn: false,
+    loggedIn: true,
     user_id: 1,
   }
 

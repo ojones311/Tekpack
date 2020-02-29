@@ -34,8 +34,8 @@ class SignUp extends Component {
         let { email, password } = this.state
         return (
             <div className="Login-Page">
-                <img src={pic} alt="brokenLink" />
-                <h1>Sign Up Component</h1>
+                {/* <img src={pic} alt="brokenLink" /> */}
+                <h1>Sign Up</h1>
 
                 <form onSubmit = {this.handleFormSubmit}>
 
@@ -45,8 +45,8 @@ class SignUp extends Component {
                         name="email"
                         value={email}
                         onChange={this.handleChange}
-                        required />
-
+                        required 
+                    />
 
                     <input
                         type="text"
@@ -54,17 +54,21 @@ class SignUp extends Component {
                         name="password"
                         value={password}
                         onChange={this.handleChange}
-                        required />
+                        required 
+                    />
 
                     <br />
 
 
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
-                    <i class="material-icons right">send</i>
+                    <button class="btn waves-effect waves-light red" type="submit" name="action">Sign Up
+                    {/* <i class="material-icons right">send</i> */}
                     </button>
                 </form>
+
+                <br />
+
                 <Link to='/login'>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Log In
+                    <button class="btn waves-effect waves-light blue" type="submit" name="action">Log In
                     {/* <i class="material-icons right">send</i> */}
                     </button></Link>
 

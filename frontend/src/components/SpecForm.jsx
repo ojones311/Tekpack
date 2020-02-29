@@ -129,11 +129,12 @@ const SpecForm = (props) => {
         }catch(error){
             console.log('err', error)
         } 
-
     }
+
     return (
         <div>
-            <h1>Spec for {projectId}</h1>
+            <h1 className='center-align'>Specifications</h1>
+
             <div className='row'>
                 {specs()}
                 {designImg()}
