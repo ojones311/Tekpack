@@ -23,7 +23,7 @@ const About = () => {
                 Tekpack is your one stop shop to manage and keep track of all product specifications and its related content seamlessly.
                 The whole process will cut down on waste in the supply chain and prevent costly mistakes in production. We’ve created a simple user
                 interface that helps designers troubleshoot before any fabric is cut. These can be made  with real time updates and reduce human error
-                to create a better communication flow between designer and factory. A user can also upload their own design and if and changes need to
+                to create a better communication flow between designer and factory. A user can also upload their own design and changes need to
                 be made, they can upload a modified sketch that will be updated instantly for all parties associated on the project. Also for users/designers
                 we’ve added an template option where they can choose from one of our basic templates. Further increasing productivity when working on designs
                 with similar specs.
