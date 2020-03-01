@@ -157,7 +157,7 @@ const SpecForm = (props) => {
         console.log(`Submit button clicked`)
         console.log(form)
         try {
-            await axios.patch(`http://localhost:3100/api/projects/update/form/${projectId}`, form.formData)
+            await axios.patch(`http://localhost:3100/api/projects/update/form/${projectId}`, {formData: form.formData, name: form.name})
             console.log('Form submitted')
         } catch (error) {
             console.log('err', error)
@@ -170,7 +170,7 @@ const SpecForm = (props) => {
         // console.log(e.locale)
         console.log(e.currentTarget.innerText)
         // console.dir(e.target)
-        if(e.keyCode === 13) {
+        if (e.keyCode === 13) {
             const formCopy = { ...form }
             formCopy.formData[e.currentTarget.innerText] = form.formData[form.lastEdit]
             delete formCopy.formData[form.lastEdit]
@@ -188,7 +188,17 @@ const SpecForm = (props) => {
 
     return (
         <div>
-            <h1 className='center-align'>{form.name}</h1>
+            <h1
+                className='center-align'
+                contentEditable
+                onKeyDown={e => {
+                    if (e.keyCode === 13) {
+                        console.log(e.currentTarget.innerText)
+                        setForm({ ...form, name: e.currentTarget.innerText })
+                        e.target.blur()
+                    }
+                }}
+            >{form.name}</h1>
 
             <div className='row'>
                 {form.formData ? specs() : null}
