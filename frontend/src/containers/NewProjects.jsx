@@ -79,8 +79,7 @@ const NewProjects = (props) => {
 
     return (
         <div>
-            <h3 className='center'>Saved Templates</h3>
-
+            <h3>Project Details (Optional)</h3>
             <input 
                 type="text" 
                 onChange={e => setTemplates({ ...templates, [e.target.name]: e.target.value })} 
@@ -94,6 +93,8 @@ const NewProjects = (props) => {
                 name='imgUrl' 
                 placeholder='Image url...'
             />
+
+            <h3 className='center'>Saved Templates</h3>
 
             <div className='project-templates'>
                 {templateCards(templates.userTemplates, 'custom')}

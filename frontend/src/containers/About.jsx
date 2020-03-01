@@ -4,7 +4,7 @@ const About = () => {
 
     return (
         <div>
-            <h1>About Page</h1>
+            <h1>About</h1>
             <p>What if I told you to make 2,000 gallons of water to make the jeans you are wearing right now, you wouldn’t believe it.
                 Nobody ever really thinks what it took to make a piece of clothing we just like it and buy it. </p>
 
