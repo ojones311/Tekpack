@@ -24,6 +24,7 @@ router.get('/all', async (req,res,next) => {
         })
     }
 })
+
 router.get('/project/:project_id', async(req, res, next) => {
     const {project_id} = req.params
     try{
@@ -102,5 +103,8 @@ router.post('/form', async (req, res, next) => {
 router.put('edit/measurement', async (req, res, next) => {
     // const {}
 })
+
+
+// router.post('/')
 
 module.exports = router

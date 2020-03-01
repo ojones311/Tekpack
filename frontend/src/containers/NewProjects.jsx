@@ -62,8 +62,8 @@ const NewProjects = (props) => {
 
 
         // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
-        const { data: {payload } } = await axios.post(`/projects/new`, { data })
-        console.log("payload",payload)
+        const { data: { payload } } = await axios.post(`/projects/new`, { data })
+        console.log("payload", payload)
 
         // RETURN THE NEW PROJECT_ID
         // ON SUCCESS call function pushToSpecForm which is setup below

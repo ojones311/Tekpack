@@ -9,12 +9,19 @@ const SpecForm = (props) => {
     // const projectId = props.match.params.id;
     console.log(`SpecForm props: `, props)
     // console.log(`SpecForm project id: `, projectId)
+    // const [form, setForm] = useState({
+    //     'Shirt Length': '25in',
+    //     'Shirt Width': '14in',
+    //     'Collar Length': '',
+    //     'Arm width Left': '',
+    //     'Arm width Right': '',
+    // })
     const [form, setForm] = useState({
-        'Shirt Length': '25in',
-        'Shirt Width': '14in',
-        'Collar Length': '',
-        'Arm width Left': '',
-        'Arm width Right': '',
+        formData: null,
+        name: null,
+        projectId: null,
+        userId: null,
+        lastEdit: null
     })
 
     const [url, setUrl] = useState({
@@ -29,8 +36,30 @@ const SpecForm = (props) => {
     useEffect(() => {
         const getSpecs = async () => {
             try {
-                const { data: { payload }} = await axios.get(`/measurements/project/${projectId}`)
-                console.log(`Form measurements: `, payload )
+                const { data: { payload } } = await axios.get(`/measurements/project/${projectId}`)
+                console.log(`Form measurements: `, payload)
+                // setForm({
+                //     form: {
+                //         formData: payload.form_data,
+                //         name: payload.description,
+                //         projectsId: payload.projects_id
+                //     },
+                //     url: {
+
+                //     }
+                // })
+                const formData = JSON.parse(payload.form_data)
+                setForm({
+                    formData,
+                    name: payload.description,
+                    projectsId: payload.projects_id,
+                    userId: payload.users_id
+                })
+
+                setUrl({
+                    ...url,
+                    url: payload.img_url
+                })
             } catch (err) {
                 console.log(err)
             }
@@ -38,22 +67,31 @@ const SpecForm = (props) => {
         getSpecs()
     }, [])
 
+    // console.log(`Specs form`, form)
+    // console.log(`Specs url`, url)
+
     const specs = () => {
-        const obj = Object.keys(form)
+        const obj = Object.keys(form.formData)
         return (
             <div className='col s6'>
                 {obj.map(key => (
-                    <label key={key}>
-                        {key}
+                    <>
+                        <label
+                            key={key}
+                            contentEditable
+                            onKeyDown={handleLabelEdit}
+                            onClick={handleLabelClick}
+                        >
+                            {key}
+                        </label>
                         <input
                             type='text'
                             name={key}
-                            value={form[key]}
+                            value={form.formData[key]}
                             className='formInput'
-                            onChange={e => setForm({ ...form, [e.target.name]: e.target.value })}
-
+                            onChange={e => setForm({ ...form, formData: { ...form.formData, [e.target.name]: e.target.value } })}
                         />
-                    </label>
+                    </>
                 ))}
             </div>
         )
@@ -88,9 +126,12 @@ const SpecForm = (props) => {
             },
             completed => {
                 storage.ref(`images/${props.state.user_id}`).child(img.name).getDownloadURL()
-                    .then(newUrl => {
+                    .then(async newUrl => {
+                        console.log(`NEW URL`, newUrl)
                         // Add/Update image url to backend
                         // const res = await axios.put(`/${projectId}`, newUrl)
+                        const res = await axios.patch(`http://localhost:3100/api/projects/update/img/${projectId}`, { url: newUrl })
+                        console.log(`Image upload to backend`, res)
                         setUrl({ form: null, url: newUrl, progress: 0, error: false })
                     })
             }
@@ -98,66 +139,62 @@ const SpecForm = (props) => {
     }
 
     console.log(url)
-    console.log({form})
-    
+    console.log({ form })
+
     const designImg = (e) => (
         <div className='design-img col s6'>
             {url.url ? <img src={url.url} className='design-img-display' alt='Design Sketch' /> : null}
 
-            { url.progress > 0 ? <UploadBar progress={url.progress} /> : null }
+            {url.progress > 0 ? <UploadBar progress={url.progress} /> : null}
 
             <UploadForm fileChange={fileChange} error={url.error} />
 
             <button className='btn' onClick={uploadImage}>Upload</button>
         </div>
     )
-    //Sends a request to my measurements route posting new specs
 
     const handleSubmit = async () => {
-        console.log('button clicked')
+        console.log(`Submit button clicked`)
         console.log(form)
-        const {measurement_id, hps, cf, cb, ss, projects_id} = form
-        try{
-            await axios.post('http://localhost:3100/api/measurements/form', {
-                measurement_id: measurement_id,
-                hps: hps,
-                cf: cf,
-                cb: cb,
-                ss: ss,
-                projects_id: projects_id
-        })
-        console.log('Form submitted')
-        }catch(error){
+        try {
+            await axios.patch(`http://localhost:3100/api/projects/update/form/${projectId}`, form.formData)
+            console.log('Form submitted')
+        } catch (error) {
             console.log('err', error)
-        } 
+        }
     }
 
+    const handleLabelEdit = (e) => {
+        console.log(e.keyCode)
+        // console.log(e.detail)
+        // console.log(e.locale)
+        console.log(e.currentTarget.innerText)
+        // console.dir(e.target)
+        if(e.keyCode === 13) {
+            const formCopy = { ...form }
+            formCopy.formData[e.currentTarget.innerText] = form.formData[form.lastEdit]
+            delete formCopy.formData[form.lastEdit]
+            setForm(formCopy)
+            e.target.blur()
+        } else if (e.keyCode >= 65 && e.keyCode <= 90) {
+            console.log(`valid key`, e.key)
+        }
+    }
 
-    // const handleSubmit = async () => {
-    //     console.log('button clicked')
-    //     console.log(form['Shirt Length'])
-    //     console.log(props.projectId)
-    //     try{
-    //         await axios.post('http://localhost:3100/api/measurements/form', {
-    //         //    postId,
-    //         //    form
-    //     })
-    //     console.log('Form submitted')
-    //     }catch(error){
-    //         console.log('err', error)
-    //     } 
-
-    // }
+    const handleLabelClick = (e) => {
+        console.dir(e.target.innerText)
+        setForm({ ...form, lastEdit: e.target.innerText })
+    }
 
     return (
         <div>
-            <h1 className='center-align'>Specifications</h1>
+            <h1 className='center-align'>{form.name}</h1>
 
             <div className='row'>
-                {specs()}
+                {form.formData ? specs() : null}
                 {designImg()}
             </div>
-            <button className='btn'>Save</button>
+            <button className='btn' onClick={handleSubmit}>Save</button>
         </div>
     )
 }
