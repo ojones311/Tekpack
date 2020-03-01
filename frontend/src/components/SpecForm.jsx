@@ -65,7 +65,7 @@ const SpecForm = (props) => {
         }
         getSpecs()
     }, [])
-    
+
     console.log(`Specs form`, form)
     console.log(`Specs url`, url)
 
@@ -82,7 +82,6 @@ const SpecForm = (props) => {
                             value={form.formData[key]}
                             className='formInput'
                             onChange={e => setForm({ ...form, formData: { ...form.formData, [e.target.name]: e.target.value } })}
-
                         />
                     </label>
                 ))}
@@ -119,9 +118,12 @@ const SpecForm = (props) => {
             },
             completed => {
                 storage.ref(`images/${props.state.user_id}`).child(img.name).getDownloadURL()
-                    .then(newUrl => {
+                    .then(async newUrl => {
+                        console.log(`NEW URL`, newUrl)
                         // Add/Update image url to backend
                         // const res = await axios.put(`/${projectId}`, newUrl)
+                        const res = await axios.patch(`http://localhost:3100/api/projects/update/img/${projectId}`, { url: newUrl})
+                        console.log(`Image upload to backend`, res)
                         setUrl({ form: null, url: newUrl, progress: 0, error: false })
                     })
             }
@@ -147,7 +149,7 @@ const SpecForm = (props) => {
         console.log(`Submit button clicked`)
         console.log(form)
         try {
-            await axios.patch(`http://localhost:3100/api/projects/update/${projectId}`, form.formData )
+            await axios.patch(`http://localhost:3100/api/projects/update/form/${projectId}`, form.formData)
             console.log('Form submitted')
         } catch (error) {
             console.log('err', error)

@@ -126,12 +126,12 @@ router.delete('/project/:project_id', async (req, res, next) => {
     }
 })
 
-router.patch('/update/:project_id', async (req, res, next) => {
-    console.log(`Patch project route hit with`, req.body, req.params.project_id)
+router.patch('/update/form/:project_id', async (req, res, next) => {
+    console.log(`Patch project form route hit with`, req.body, req.params.project_id)
     try {
-        const data = projects.updateProject(req.body, req.params.project_id)
+        const data = projects.updateProjectFormData(req.body, req.params.project_id)
         res.json({
-            payload: 'SOME DATA',
+            payload: data,
             msg: 'Project Updated',
             error: false
         })
@@ -143,5 +143,24 @@ router.patch('/update/:project_id', async (req, res, next) => {
         })
     }
 })
+
+router.patch('/update/img/:project_id', async (req, res, next) => {
+    console.log(`Patch project img route hit with`, req.body, req.params.project_id)
+    try {
+        const data = projects.updateProjectImageUrl(req.body.url, req.params.project_id)
+        res.json({
+            payload: data,
+            msg: 'Project Updated',
+            error: false
+        })
+    } catch (err) {
+        res.status(500).json({
+            payload: null,
+            msg: err,
+            err: true
+        })
+    }
+})
+
 
 module.exports = router;
