@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom'
 
 
 
+
 class SignUp extends Component {
     constructor() {
         super()
@@ -60,9 +61,14 @@ class SignUp extends Component {
                     <br />
 
 
+                    {/* <Button variant="outlined" color="secondary">Sign In</Button><br/> */}
+                    {/* <Button variant="outlined" color="secondary">Sign up</Button> */}
+
+
                     <button class="btn waves-effect waves-light red" type="submit" name="action">Sign Up
                     {/* <i class="material-icons right">send</i> */}
                     </button>
+
                 </form>
 
                 <br />

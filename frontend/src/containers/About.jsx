@@ -33,6 +33,7 @@ const About = () => {
                 <or>
                     <li>live changes</li>
                     <li>Designers to be able to send factories their url link. The supplier will have to sign up under the supplier account to
+<<<<<<< HEAD
                         access the designers projects. Supplier will not be allowed to edit images or measurements but they will be able to comment
                         on designers projects.</li>
                     <li> Designers sketches will be 3D and dynamic where once a measurement is inputed the image would display the input in real time.</li>
@@ -40,6 +41,14 @@ const About = () => {
                         sheet for printing purposes.</li>
                     <li>Be able to leave comment on projects</li>
                     <li>Save measurements under specific projects</li>
+=======
+                        access the designers projects. Supplier will not be allowed to edit images or measurements but they will be able to comment 
+                        on designers projects.</li>
+                    <li> Designers sketches will be 3D and dynamic where once a measurement is inputed the image would display the input in real time.</li>
+                    <li>Add an Export option where suppliers are able to export the spec sheet as a PDF or just the measurements as an excel 
+                        sheet for printing purposes.</li>
+                    <li>QR Code to get product specs instantly</li>
+>>>>>>> 1dca407bc1ddf49eab0bee7f70eb0cfc4b50f385
                 </or>
             </p>
 
