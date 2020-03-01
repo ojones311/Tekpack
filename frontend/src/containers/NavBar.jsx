@@ -44,7 +44,8 @@ const NavBar = (props) => {
     return (
         <nav className="nav-wrapper red">
             <div className='container'>
-                <NavLink to='/home' className='brand-logo'>TekPack</NavLink>
+                <img className="logo" src="TEKPACK.jpg" alt="logo"/>
+                {/* <NavLink to='/home' className='brand-logo'>TekPack</NavLink> */}
                 <a
                     data-target="mobile-demo"
                     className="sidenav-trigger">
