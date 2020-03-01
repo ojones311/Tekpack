@@ -9,12 +9,18 @@ const SpecForm = (props) => {
     // const projectId = props.match.params.id;
     console.log(`SpecForm props: `, props)
     // console.log(`SpecForm project id: `, projectId)
+    // const [form, setForm] = useState({
+    //     'Shirt Length': '25in',
+    //     'Shirt Width': '14in',
+    //     'Collar Length': '',
+    //     'Arm width Left': '',
+    //     'Arm width Right': '',
+    // })
     const [form, setForm] = useState({
-        'Shirt Length': '25in',
-        'Shirt Width': '14in',
-        'Collar Length': '',
-        'Arm width Left': '',
-        'Arm width Right': '',
+        formData: null,
+        name: null,
+        projectId: null,
+        userId: null
     })
 
     const [url, setUrl] = useState({
@@ -29,17 +35,42 @@ const SpecForm = (props) => {
     useEffect(() => {
         const getSpecs = async () => {
             try {
-                const { data: { payload }} = await axios.get(`/measurements/project/${projectId}`)
-                console.log(`Form measurements: `, payload )
+                const { data: { payload } } = await axios.get(`/measurements/project/${projectId}`)
+                console.log(`Form measurements: `, payload)
+                // setForm({
+                //     form: {
+                //         formData: payload.form_data,
+                //         name: payload.description,
+                //         projectsId: payload.projects_id
+                //     },
+                //     url: {
+
+                //     }
+                // })
+                const formData = JSON.parse(payload.form_data)
+                setForm({
+                    formData,
+                    name: payload.description,
+                    projectsId: payload.projects_id,
+                    userId: payload.users_id
+                })
+
+                setUrl({
+                    ...url,
+                    url: payload.img_url
+                })
             } catch (err) {
                 console.log(err)
             }
         }
         getSpecs()
     }, [])
+    
+    console.log(`Specs form`, form)
+    console.log(`Specs url`, url)
 
     const specs = () => {
-        const obj = Object.keys(form)
+        const obj = Object.keys(form.formData)
         return (
             <div className='col s6'>
                 {obj.map(key => (
@@ -48,9 +79,9 @@ const SpecForm = (props) => {
                         <input
                             type='text'
                             name={key}
-                            value={form[key]}
+                            value={form.formData[key]}
                             className='formInput'
-                            onChange={e => setForm({ ...form, [e.target.name]: e.target.value })}
+                            onChange={e => setForm({ ...form, formData: { ...form.formData, [e.target.name]: e.target.value } })}
 
                         />
                     </label>
@@ -98,13 +129,13 @@ const SpecForm = (props) => {
     }
 
     console.log(url)
-    console.log({form})
+    console.log({ form })
 
     const designImg = (e) => (
         <div className='design-img col s6'>
             {url.url ? <img src={url.url} className='design-img-display' alt='Design Sketch' /> : null}
 
-            { url.progress > 0 ? <UploadBar progress={url.progress} /> : null }
+            {url.progress > 0 ? <UploadBar progress={url.progress} /> : null}
 
             <UploadForm fileChange={fileChange} error={url.error} />
 
@@ -112,11 +143,12 @@ const SpecForm = (props) => {
         </div>
     )
     //Sends a request to my measurements route posting new specs
+
     const handleSubmit = async () => {
         console.log('button clicked')
         console.log(form)
-        const {measurement_id, hps, cf, cb, ss, projects_id} = form
-        try{
+        const { measurement_id, hps, cf, cb, ss, projects_id } = form
+        try {
             await axios.post('http://localhost:3100/api/measurements/form', {
                 measurement_id: measurement_id,
                 hps: hps,
@@ -124,22 +156,39 @@ const SpecForm = (props) => {
                 cb: cb,
                 ss: ss,
                 projects_id: projects_id
-        })
-        console.log('Form submitted')
-        }catch(error){
+            })
+            console.log('Form submitted')
+        } catch (error) {
             console.log('err', error)
-        } 
+        }
     }
+
+
+    // const handleSubmit = async () => {
+    //     console.log('button clicked')
+    //     console.log(form['Shirt Length'])
+    //     console.log(props.projectId)
+    //     try{
+    //         await axios.post('http://localhost:3100/api/measurements/form', {
+    //         //    postId,
+    //         //    form
+    //     })
+    //     console.log('Form submitted')
+    //     }catch(error){
+    //         console.log('err', error)
+    //     } 
+
+    // }
 
     return (
         <div>
-            <h1 className='center-align'>Specifications</h1>
+            <h1 className='center-align'>{form.name}</h1>
 
             <div className='row'>
-                {specs()}
+                {form.formData ? specs() : null}
                 {designImg()}
             </div>
-            <button className='btn' onClick={handleSubmit}>Save</button>
+            <button className='btn'>Save</button>
         </div>
     )
 }
