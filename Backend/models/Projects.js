@@ -59,10 +59,21 @@ deleteProject = async (project_id) => {
     }
 }
 
+updateProject = async (formData, project_id) => {
+    try {
+        const stringFormData = JSON.stringify(formData)
+        const update = await db.one(`UPDATE projects SET form_data = $1 WHERE projects_id = $2 RETURNING *`, [stringFormData, project_id] )
+        console.log(update)
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 module.exports = {
     getAllProjects,
     getAllProjectsByUserId,
     getProjectByProjectId,
     createNewProject,
-    deleteProject
+    deleteProject,
+    updateProject
 }
