@@ -29,11 +29,12 @@ getProjectByProjectId = async (projects_id) => {
 }
 
 createNewProject = async (proj) => {
-    const { description, date_made, created_by, quantity, color, img_url } = proj
+    console.log(`OBJECT: `, proj)
+    const { name: description, img_url, formData } = proj
     try {
-        const insertQuery = `INSERT INTO projects (description, date_made, created_by, quantity, color, img_url) 
-        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
-        let response = await db.any(insertQuery, [description, date_made, created_by, quantity, color, img_url])
+        const insertQuery = `INSERT INTO projects (description, img_url, form_data) 
+        VALUES ($1, $2, $3) RETURNING *`
+        let response = await db.any(insertQuery, [description, img_url, formData])
         console.log(`POST RETURNED`, response)
         return response;
     } catch (error) {

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const projects = require('../models/Projects')
 const Measurements = require('../models/Measurements')
+const templates = require('../models/Template')
 
 router.get('/', (req, res, next) => {
     res.send('Route working')
@@ -63,7 +64,17 @@ router.get('/specs/:projects_id', async (req, res, next) => {
 })
 
 router.post('/new', async (req, res, next) => {
+    console.log(req.body.data)
     console.log(req.body)
+
+    if (req.body.data.type === 'default') {
+        const res = await templates.getTemplateById(req.body.data.templateId)
+        req.body.formData = res
+        console.log(`Default response`, res)
+    } else {
+        req.body.formData = ''
+    }
+
     try {
         const newProject = await projects.createNewProject(req.body)
         res.json({
