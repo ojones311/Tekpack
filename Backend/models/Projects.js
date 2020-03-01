@@ -60,10 +60,11 @@ deleteProject = async (project_id) => {
 }
 
 updateProjectFormData = async (formData, project_id) => {
+    console.log(`FORM DATA`, formData)
     try {
-        const stringFormData = JSON.stringify(formData)
-        const update = await db.one(`UPDATE projects SET form_data = $1 WHERE projects_id = $2 RETURNING *`, [stringFormData, project_id] )
-        console.log(update)
+        const stringFormData = JSON.stringify(formData.formData)
+        const update = await db.one(`UPDATE projects SET form_data = $1, description = $2 WHERE projects_id = $3 RETURNING *`, [stringFormData, formData.name, project_id] )
+        console.log(`UPDATE`, update)
         return update
     } catch (err) {
         console.log(err)
