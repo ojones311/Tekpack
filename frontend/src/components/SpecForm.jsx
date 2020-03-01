@@ -65,7 +65,7 @@ const SpecForm = (props) => {
         }
         getSpecs()
     }, [])
-    
+
     console.log(`Specs form`, form)
     console.log(`Specs url`, url)
 
@@ -82,7 +82,6 @@ const SpecForm = (props) => {
                             value={form.formData[key]}
                             className='formInput'
                             onChange={e => setForm({ ...form, formData: { ...form.formData, [e.target.name]: e.target.value } })}
-
                         />
                     </label>
                 ))}
@@ -119,9 +118,12 @@ const SpecForm = (props) => {
             },
             completed => {
                 storage.ref(`images/${props.state.user_id}`).child(img.name).getDownloadURL()
-                    .then(newUrl => {
+                    .then(async newUrl => {
+                        console.log(`NEW URL`, newUrl)
                         // Add/Update image url to backend
                         // const res = await axios.put(`/${projectId}`, newUrl)
+                        const res = await axios.patch(`http://localhost:3100/api/projects/update/img/${projectId}`, { url: newUrl})
+                        console.log(`Image upload to backend`, res)
                         setUrl({ form: null, url: newUrl, progress: 0, error: false })
                     })
             }
@@ -142,43 +144,17 @@ const SpecForm = (props) => {
             <button className='btn' onClick={uploadImage}>Upload</button>
         </div>
     )
-    //Sends a request to my measurements route posting new specs
 
     const handleSubmit = async () => {
-        console.log('button clicked')
+        console.log(`Submit button clicked`)
         console.log(form)
-        const { measurement_id, hps, cf, cb, ss, projects_id } = form
         try {
-            await axios.post('http://localhost:3100/api/measurements/form', {
-                measurement_id: measurement_id,
-                hps: hps,
-                cf: cf,
-                cb: cb,
-                ss: ss,
-                projects_id: projects_id
-            })
+            await axios.patch(`http://localhost:3100/api/projects/update/form/${projectId}`, form.formData)
             console.log('Form submitted')
         } catch (error) {
             console.log('err', error)
         }
     }
-
-
-    // const handleSubmit = async () => {
-    //     console.log('button clicked')
-    //     console.log(form['Shirt Length'])
-    //     console.log(props.projectId)
-    //     try{
-    //         await axios.post('http://localhost:3100/api/measurements/form', {
-    //         //    postId,
-    //         //    form
-    //     })
-    //     console.log('Form submitted')
-    //     }catch(error){
-    //         console.log('err', error)
-    //     } 
-
-    // }
 
     return (
         <div>
@@ -188,7 +164,7 @@ const SpecForm = (props) => {
                 {form.formData ? specs() : null}
                 {designImg()}
             </div>
-            <button className='btn'>Save</button>
+            <button className='btn' onClick={handleSubmit}>Save</button>
         </div>
     )
 }
