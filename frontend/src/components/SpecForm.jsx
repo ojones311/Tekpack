@@ -21,7 +21,8 @@ const SpecForm = (props) => {
         name: null,
         projectId: null,
         userId: null,
-        lastEdit: null
+        lastEdit: null,
+        formSaved: true
     })
 
     const [url, setUrl] = useState({
@@ -74,7 +75,7 @@ const SpecForm = (props) => {
         const obj = Object.keys(form.formData)
         return (
             <div className='col s6'>
-                {obj.map(key => (
+                {obj.map((key, i) => (
                     <>
                         <label
                             key={key}
@@ -89,8 +90,15 @@ const SpecForm = (props) => {
                             name={key}
                             value={form.formData[key]}
                             className='formInput'
-                            onChange={e => setForm({ ...form, formData: { ...form.formData, [e.target.name]: e.target.value } })}
+                            onChange={e => setForm({ ...form, formData: { ...form.formData, [e.target.name]: e.target.value }, formSaved: false })}
                         />
+                        {/* { i === obj.length - 1 ?
+                            <button 
+                                className='btn'
+                                onClick={() => setForm({ ...form, formData: {...form.formData, 'Edit me': '' }, formSaved: false})}
+                            >Add</button>
+                            : null
+                        } */}
                     </>
                 ))}
             </div>
@@ -98,6 +106,9 @@ const SpecForm = (props) => {
     }
 
     const fileChange = e => {
+        if (form.formData) {
+            // setForm({ ...form, ))
+        }
         if (e.target.files[0]) {
             console.log(`File changed`, e.target.files[0])
             setUrl({ ...url, form: e.target.files[0] })
@@ -159,6 +170,7 @@ const SpecForm = (props) => {
         try {
             await axios.patch(`http://localhost:3100/api/projects/update/form/${projectId}`, {formData: form.formData, name: form.name})
             console.log('Form submitted')
+            setForm({ ...form, formSaved: true })
         } catch (error) {
             console.log('err', error)
         }
@@ -174,7 +186,7 @@ const SpecForm = (props) => {
             const formCopy = { ...form }
             formCopy.formData[e.currentTarget.innerText] = form.formData[form.lastEdit]
             delete formCopy.formData[form.lastEdit]
-            setForm(formCopy)
+            setForm({ ...formCopy, formSaved: false })
             e.target.blur()
         } else if (e.keyCode >= 65 && e.keyCode <= 90) {
             console.log(`valid key`, e.key)
@@ -204,7 +216,9 @@ const SpecForm = (props) => {
                 {form.formData ? specs() : null}
                 {designImg()}
             </div>
-            <button className='btn' onClick={handleSubmit}>Save</button>
+            <button className={form.formSaved ? 'btn green ' : 'btn red '} onClick={handleSubmit}>
+                { form.formSaved ? 'Save 😁' :  'Save 😬' }
+            </button>
         </div>
     )
 }

@@ -8,6 +8,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+* {
+  outline: none;
+}
 
 .white-text {
   color: white;
