@@ -10,9 +10,10 @@ getDefaultTemplates = async () => {
     }
 }
 
-getDefaultTemplatesById = async (deftemplate_id) => {
+getDefaultTemplatesById = async (template_id) => {
+    console.log(template_id)
     try {
-        const byID = await db.one(`SELECT * FROM defaultTemplates WHERE deftemplate_id = ${$1}`, [deftemplate_id])
+        const byID = await db.one('SELECT * FROM defaultTemplates WHERE template_id = $1', [template_id])
         return byID
     } catch (error) {
         console.log('error', error)

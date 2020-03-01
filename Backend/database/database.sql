@@ -73,9 +73,10 @@ CREATE TABLE measurement
 );
 
 CREATE TABLE defaultTemplates (
-deftemplate_id SERIAL PRIMARY KEY, 
+template_id SERIAL PRIMARY KEY, 
 img_name VARCHAR,
- image VARCHAR
+ image VARCHAR,
+ measurements VARCHAR
 );
 
 INSERT INTO users
@@ -123,10 +124,10 @@ VALUES
     (5, 9, 10, 3, 4),
     (10, 3, 5, 14, 5);
 
-INSERT INTO defaultTemplates (deftemplate_id, img_name, image)
+INSERT INTO defaultTemplates (template_id, img_name, image, measurements)
 VALUES
-(1,  'T-shirt',  'https://pluspng.com/img-png/tshirt-png-outline-blank-t-shirt-outline-1663530-1421.jpg'),
-(2, 'Hoodie',  'https://i.ya-webdesign.com/images/hoodie-template-png-13.png' ),
-(3,'Jeans', 'https://i.pinimg.com/originals/7e/e7/81/7ee78144307504c7de8c4b50255a0ca8.png'),
-(4, 'Socks',  'https://media.istockphoto.com/vectors/sock-template-vector-id512011001?k=6&m=512011001&s=612x612&w=0&h=tNkOx3mG7dRj5X1rKB46mYu77ehGHtH0rsNA1GieDmk=');
+(1,  'T-shirt',  'https://pluspng.com/img-png/tshirt-png-outline-blank-t-shirt-outline-1663530-1421.jpg', '"Arm length":"10"'),
+(2, 'Hoodie',  'https://i.ya-webdesign.com/images/hoodie-template-png-13.png' , '"Arm length":"10"'),
+(3,'Jeans', 'https://i.pinimg.com/originals/7e/e7/81/7ee78144307504c7de8c4b50255a0ca8.png', '"Arm length":"10"'),
+(4, 'Socks',  'https://media.istockphoto.com/vectors/sock-template-vector-id512011001?k=6&m=512011001&s=612x612&w=0&h=tNkOx3mG7dRj5X1rKB46mYu77ehGHtH0rsNA1GieDmk=', '"Arm length":"10"');
 

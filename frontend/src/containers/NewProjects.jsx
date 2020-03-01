@@ -46,9 +46,10 @@ const NewProjects = (props) => {
     }
 
     const postNewProject = async (template_id, type, description, url) => {
+        console.log('====>', props)
         console.log(`Template ID: ${template_id}`, `Type: ${type}`, `Name: ${description}`, `Project Name: ${templates.projectName}`, `Image url:  ${url}`)
-        const data = { template_id, type, description, url }
-        if (templates.projectName) {
+        const data = { template_id, type, description, url , users_id: props.state.user_id}
+        if (templates.projectName === '') {
             data.description = templates.projectName
         } else {
             data.description = description
@@ -59,7 +60,6 @@ const NewProjects = (props) => {
             data.url = url
         }
 
-        data.users_id = props.state.user_id
 
         // POST A NEW PROJECT BASED ON THE PROJECT TEMPLATE_ID
         const { data: {payload } } = await axios.post(`/projects/new`, { data })

@@ -68,12 +68,16 @@ router.get('/specs/:projects_id', async (req, res, next) => {
 })
 
 router.post('/new', async (req, res, next) => {
-    console.log(req.body)
-    if (req.body.type === "default") {
+    console.log("body",req.body)
+    if (req.body.data.type === "default") {
         try {
-            const query = await default_templates.getDefaultTemplatesById()
+            const query = await default_templates.getDefaultTemplatesById(req.body.data.template_id)
             console.log("query", query)
-            req.body.form_data = query
+            req.body.data.form_data = query.measurements
+            req.body.data.img_url = query.image
+            req.body.data.description = query.img_name
+            
+
         } catch (error) {
             res.status(500).json({
                 payload: null,
@@ -85,7 +89,7 @@ router.post('/new', async (req, res, next) => {
         req.body.form_data = ''
     }
     try {
-        const newProject = await projects.createNewProject(req.body)
+        const newProject = await projects.createNewProject(req.body.data)
         console.log("newProject", newProject)
         res.json({
             payload: newProject,
