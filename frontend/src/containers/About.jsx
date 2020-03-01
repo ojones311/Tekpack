@@ -31,10 +31,14 @@ const About = () => {
             <p>
                 For Future features
                 <or>
+                    <li>live changes</li>
                     <li>Designers to be able to send factories their url link. The supplier will have to sign up under the supplier account to
-                access the designers projects. Supplier will not be allowed to edit images or measurements but they will be able to comment on designers projects.</li>
-                    <li> Designers image will be dynamic where once a measurement is inputed the image would display the input in real time.</li>
-                    <li>We also want to change our database to mongo db where we would be able to have a more (INSERT WHY)</li>
+                        access the designers projects. Supplier will not be allowed to edit images or measurements but they will be able to comment 
+                        on designers projects.</li>
+                    <li> Designers sketches will be 3D and dynamic where once a measurement is inputed the image would display the input in real time.</li>
+                    <li>Add an Export option where suppliers are able to export the spec sheet as a PDF or just the measurements as an excel 
+                        sheet for printing purposes.</li>
+                    <li>QR Code to get product specs instantly</li>
                 </or>
             </p>
 
