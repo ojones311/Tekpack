@@ -28,7 +28,6 @@ CREATE TABLE projects
     projects_id SERIAL PRIMARY KEY,
     description VARCHAR,
     img_url VARCHAR,
-    template_id INT REFERENCES template(template_id),
     users_id INT REFERENCES users(users_id),
     form_data VARCHAR
 );
@@ -73,10 +72,10 @@ CREATE TABLE measurement
 );
 
 CREATE TABLE defaultTemplates (
-template_id SERIAL PRIMARY KEY, 
-img_name VARCHAR,
- image VARCHAR,
- measurements VARCHAR
+    template_id SERIAL PRIMARY KEY, 
+    img_name VARCHAR,
+    image VARCHAR,
+    measurements VARCHAR
 );
 
 INSERT INTO users
@@ -86,7 +85,6 @@ VALUES
     ('Jonathan Fagan', 'JFagan@project.com', 9876543210, 'pursuit123'),
     ('Jenesh Napit', 'JNapit@project.com', 2324568769, 'pursuit123'),
     ('Kadijah Wilson', 'KWilson@project.com', 1245987763, 'pursuit123');
-
 
 
 INSERT INTO template
@@ -100,11 +98,11 @@ VALUES
 INSERT INTO projects
     ( description, img_url, users_id, form_data)
 VALUES
-    ('t-shirt', '' , 1, ''),
-    ('jeans', 'https://cdn3.vectorstock.com/i/thumb-large/57/12/unisex-outlined-template-jeans-front-back-view-vector-6975712.jpg',2, '' ),
-    ( 'socks', '',  4 ,''),
-    ('t-shirt', '', 4, ''),
-    ('hoodie', '',  3,'');
+    ('Basic T-shirt', 'https://pluspng.com/img-png/tshirt-png-outline-blank-t-shirt-outline-1663530-1421.jpg' , 1, '{"Arm length":"6", "Shirt Length":"20", "Shirt Width":"12"}'),
+    ('Blue Jeans', 'https://cdn.clipart.email/fbe42d55ed4f6309210ceaf2520f0181_hand-drawn-fashion-design-mens-jeans-clipart-commercial-use-_570-713.jpeg',2, '{"Leg Length":"30", "Waist":"28"}' ),
+    ('Dress Socks', 'https://media.istockphoto.com/vectors/sock-template-vector-id512011001?k=6&m=512011001&s=612x612&w=0&h=tNkOx3mG7dRj5X1rKB46mYu77ehGHtH0rsNA1GieDmk=',  4 ,''),
+    ('T-shirt', 'https://pluspng.com/img-png/tshirt-png-outline-blank-t-shirt-outline-1663530-1421.jpg', 4, ''),
+    ('Plain Hoodie', 'https://i.ya-webdesign.com/images/hoodie-template-png-13.png',  3,'');
 
 INSERT INTO comments
     (comment, commentors_email)
@@ -126,8 +124,8 @@ VALUES
 
 INSERT INTO defaultTemplates (template_id, img_name, image, measurements)
 VALUES
-(1,  'T-shirt',  'https://pluspng.com/img-png/tshirt-png-outline-blank-t-shirt-outline-1663530-1421.jpg', '"Arm length":"10"'),
-(2, 'Hoodie',  'https://i.ya-webdesign.com/images/hoodie-template-png-13.png' , '"Arm length":"10"'),
-(3,'Jeans', 'https://i.pinimg.com/originals/7e/e7/81/7ee78144307504c7de8c4b50255a0ca8.png', '"Arm length":"10"'),
-(4, 'Socks',  'https://media.istockphoto.com/vectors/sock-template-vector-id512011001?k=6&m=512011001&s=612x612&w=0&h=tNkOx3mG7dRj5X1rKB46mYu77ehGHtH0rsNA1GieDmk=', '"Arm length":"10"');
+(1,  'T-shirt',  'https://pluspng.com/img-png/tshirt-png-outline-blank-t-shirt-outline-1663530-1421.jpg', '{"Arm length":"", "Shirt Length":""}'),
+(2, 'Hoodie',  'https://i.ya-webdesign.com/images/hoodie-template-png-13.png' , '{"Arm length":"10"}'),
+(3,'Jeans', 'https://i.pinimg.com/originals/7e/e7/81/7ee78144307504c7de8c4b50255a0ca8.png', '{"Arm length":"10"}'),
+(4, 'Socks',  'https://media.istockphoto.com/vectors/sock-template-vector-id512011001?k=6&m=512011001&s=612x612&w=0&h=tNkOx3mG7dRj5X1rKB46mYu77ehGHtH0rsNA1GieDmk=', '{"Arm length":"10"}');
 
