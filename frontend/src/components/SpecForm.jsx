@@ -20,7 +20,8 @@ const SpecForm = (props) => {
         formData: null,
         name: null,
         projectId: null,
-        userId: null
+        userId: null,
+        lastEdit: null
     })
 
     const [url, setUrl] = useState({
@@ -66,16 +67,23 @@ const SpecForm = (props) => {
         getSpecs()
     }, [])
 
-    console.log(`Specs form`, form)
-    console.log(`Specs url`, url)
+    // console.log(`Specs form`, form)
+    // console.log(`Specs url`, url)
 
     const specs = () => {
         const obj = Object.keys(form.formData)
         return (
             <div className='col s6'>
                 {obj.map(key => (
-                    <label key={key}>
-                        {key}
+                    <>
+                        <label
+                            key={key}
+                            contentEditable
+                            onKeyDown={handleLabelEdit}
+                            onClick={handleLabelClick}
+                        >
+                            {key}
+                        </label>
                         <input
                             type='text'
                             name={key}
@@ -83,7 +91,7 @@ const SpecForm = (props) => {
                             className='formInput'
                             onChange={e => setForm({ ...form, formData: { ...form.formData, [e.target.name]: e.target.value } })}
                         />
-                    </label>
+                    </>
                 ))}
             </div>
         )
@@ -122,7 +130,7 @@ const SpecForm = (props) => {
                         console.log(`NEW URL`, newUrl)
                         // Add/Update image url to backend
                         // const res = await axios.put(`/${projectId}`, newUrl)
-                        const res = await axios.patch(`http://localhost:3100/api/projects/update/img/${projectId}`, { url: newUrl})
+                        const res = await axios.patch(`http://localhost:3100/api/projects/update/img/${projectId}`, { url: newUrl })
                         console.log(`Image upload to backend`, res)
                         setUrl({ form: null, url: newUrl, progress: 0, error: false })
                     })
@@ -154,6 +162,28 @@ const SpecForm = (props) => {
         } catch (error) {
             console.log('err', error)
         }
+    }
+
+    const handleLabelEdit = (e) => {
+        console.log(e.keyCode)
+        // console.log(e.detail)
+        // console.log(e.locale)
+        console.log(e.currentTarget.innerText)
+        // console.dir(e.target)
+        if(e.keyCode === 13) {
+            const formCopy = { ...form }
+            formCopy.formData[e.currentTarget.innerText] = form.formData[form.lastEdit]
+            delete formCopy.formData[form.lastEdit]
+            setForm(formCopy)
+            e.target.blur()
+        } else if (e.keyCode >= 65 && e.keyCode <= 90) {
+            console.log(`valid key`, e.key)
+        }
+    }
+
+    const handleLabelClick = (e) => {
+        console.dir(e.target.innerText)
+        setForm({ ...form, lastEdit: e.target.innerText })
     }
 
     return (
